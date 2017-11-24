@@ -1,4 +1,4 @@
-package pu.zajhhaptaueuh.zt_anphsop
+package pu.zajhhaptaueuh.ztanphsop
 
 import org.junit.Test
 
