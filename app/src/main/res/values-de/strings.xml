@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ztanphsop</string>
+    <string name="arm">scharf stellen</string>
+    <string name="disarm">entschärfen</string>
+    <string name="settings">einstellungen</string>
+</resources>

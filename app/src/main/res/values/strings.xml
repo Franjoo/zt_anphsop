@@ -5,4 +5,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="bike_detail_bike_name">Backflip</string>
     <string name="bike_detail_bike_subtitle">Subtitle</string>
+    <string name="arm">arm</string>
+    <string name="disarm">disarm</string>
+    <string name="settings">settings</string>
 </resources>
