@@ -8,12 +8,13 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="230dp"
-            android:background="#0000ff" />
+            android:scaleType="centerCrop"
+            android:src="@raw/_bike_detail_header_fallback"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#550000"
+            android:background="@color/alarmPrimary"
             android:orientation="vertical"
             android:padding="30dp">
 
@@ -21,14 +22,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/bitter"
-                android:text="Backflip"
+                android:textStyle="bold"
+                android:text="@string/bike_detail_bike_name"
                 android:textColor="@color/fontPrimaryLight"
-                android:textSize="24dp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Subtitle"
+                android:text="@string/bike_detail_bike_subtitle"
                 android:textColor="@color/fontPrimaryLight"
                 android:visibility="gone" />
         </LinearLayout>
