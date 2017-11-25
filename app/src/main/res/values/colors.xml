@@ -3,4 +3,16 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--font colors-->
+    <color name="fontPrimaryLight">#FAE3E3</color>
+    <color name="fontPrimaryDark">#141414</color>
+    <color name="fontAccentDark">#626262</color>
+
+    <color name="alarmPrimary">#D7353D</color>
+    <color name="backgroundLight">#141414</color>
+
+    <!--toggles-->
+    <color name="toggleDeactivated">#898989</color>
+    <color name="toggleActivated">#606060</color>
 </resources>
