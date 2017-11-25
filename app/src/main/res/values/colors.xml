@@ -15,4 +15,6 @@
     <!--toggles-->
     <color name="toggleDeactivated">#898989</color>
     <color name="toggleActivated">#606060</color>
+
+
 </resources>

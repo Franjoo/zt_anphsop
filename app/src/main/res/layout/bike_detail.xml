@@ -1,46 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:background="#0000ff" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#550000"
-        android:orientation="vertical"
-        android:padding="30dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/fontPrimaryLight"
-            android:textSize="24dp"
-            android:text="Backflip"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Subtitle"
-            android:visibility="gone"/>
-    </LinearLayout>
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:weightSum="3">
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:background="#0000ff" />
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:background="#550000"
             android:orientation="vertical"
             android:padding="30dp">
@@ -48,110 +20,81 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="icon"
-                android:textAlignment="center" />
+                android:fontFamily="@font/bitter"
+                android:text="Backflip"
+                android:textColor="@color/fontPrimaryLight"
+                android:textSize="24dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="subtitle"
-                android:textAlignment="center" />
+                android:text="Subtitle"
+                android:textColor="@color/fontPrimaryLight"
+                android:visibility="gone" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="#550000"
-            android:orientation="vertical"
-            android:padding="30dp">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
-            <TextView
+            <include layout="@layout/bike_action_toggle"
+                android:id="@+id/bike_toggle_arm" />
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="icon"
-                android:textAlignment="center" />
+            <include layout="@layout/bike_action_toggle"
+                android:id="@+id/bike_toggle_disarm"/>
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="subtitle"
-                android:textAlignment="center" />
+            <include layout="@layout/bike_action_toggle"
+                android:id="@+id/bike_toggle_settings"/>
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#550000"
-            android:orientation="vertical"
-            android:padding="30dp">
+            android:layout_gravity="right"
+            android:background="#afafaf"
+
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/textbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="30dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="das ist der titel"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="das ist der untertitel"
+                    android:textColor="#000000"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
 
             <TextView
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="icon"
-                android:textAlignment="center" />
-
-            <TextView
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="subtitle"
-                android:textAlignment="center" />
-        </LinearLayout>
-        v
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:background="#afafaf"
-
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/textbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:padding="30dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="das ist der titel"
-                android:textColor="#000000" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="das ist der untertitel"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="9dp"
+                android:layout_weight="0"
+                android:gravity="center"
+                android:text=">>"
+                android:textAlignment="center"
                 android:textColor="#000000"
                 android:textSize="10sp" />
+
+
         </LinearLayout>
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="9dp"
-            android:layout_weight="0"
-            android:gravity="center"
-            android:text=">>"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="10sp" />
-
-
     </LinearLayout>
-
-
-</LinearLayout>
