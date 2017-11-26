@@ -4,9 +4,15 @@ import android.os.Bundle
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.graphics.PorterDuff
+import android.graphics.drawable.Drawable
+import android.R.attr.textColorPrimary
 
 
 /**
@@ -19,28 +25,50 @@ class BikeDetailActivity : AppCompatActivity() {
         setContentView(R.layout.bike_detail)
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        menuInflater.inflate(R.menu.ab_bike_detail, menu)
-//        return true
-//    }
+//    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+//        super.onPrepareOptionsMenu(menu)
 //
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        when (item.itemId) {
-//            R.id.action_settings -> {
-//                Log.d("L", "settings")
-//                return true
-//            }
-//            R.id.action_favorite -> {
-//                Log.d("L", "favourite")
-//                return true
-//            }
-//            else -> {
-//                // If we got here, the user's action was not recognized.
-//                // Invoke the superclass to handle it.
-//                return super.onOptionsItemSelected(item)
-//            }
-//        }
+//        val item = menu.findItem(R.id.action_camera)
+//        val icon = resources.getDrawable(R.drawable.ic_delete_white_24dp)
+//        icon.setColorFilter(resources.getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN)
+//
+//        item.icon = icon
 //    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.ab_bike_detail, menu)
+        for (i in 0 until menu.size()) {
+            val drawable = menu.getItem(i).icon
+            if (drawable != null) {
+                drawable.mutate()
+                drawable.setColorFilter(resources.getColor(R.color.toggleActivated), PorterDuff.Mode.SRC_ATOP)
+            }
+        }
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_camera -> {
+                Log.d("L", "settings")
+                return true
+            }
+            R.id.action_edit -> {
+                Log.d("L", "favourite")
+                return true
+            }
+
+            R.id.action_delete -> {
+                Log.d("L", "favourite")
+                return true
+            }
+            else -> {
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item)
+            }
+        }
+    }
 
     override fun onResume() {
         super.onResume()
@@ -49,9 +77,16 @@ class BikeDetailActivity : AppCompatActivity() {
     }
 
     private fun setupActionBar() {
-        val myToolbar: Toolbar = findViewById(R.id.my_toolbar)
-        myToolbar.setTitleTextAppearance(this, R.style.ToolbarTextAppearance)
-        setSupportActionBar(myToolbar)
+        val toolbar: Toolbar = findViewById(R.id.my_toolbar)
+        toolbar.setTitleTextAppearance(this, R.style.ToolbarTextAppearance)
+        setSupportActionBar(toolbar)
+
+        // prepare home icon
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        val homeIndicatorDrawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_back_white_24dp, null)
+        homeIndicatorDrawable!!.mutate()
+        homeIndicatorDrawable.setColorFilter(resources.getColor(R.color.toggleActivated), PorterDuff.Mode.SRC_ATOP)
+        supportActionBar?.setHomeAsUpIndicator(homeIndicatorDrawable)
     }
 
     private fun setupViews() {

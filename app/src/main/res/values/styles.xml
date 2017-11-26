@@ -8,9 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="ToolbarTextAppearance">
+    <style name="ToolbarTextAppearance" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:fontFamily">@font/bitter</item>
         <item name="android:textSize">@dimen/toolbar_text_size</item>
+        <item name="android:textColorPrimary">#fa0</item>
+        <item name="colorControlNormal">#fac</item>
+
     </style>
 
 </resources>
