@@ -1,102 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="230dp"
-            android:scaleType="centerCrop"
-            android:src="@raw/_bike_detail_header_fallback"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:scaleType="centerCrop"
+        android:src="@raw/_bike_detail_header_fallback" />
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/alarmPrimary"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <TextView
+            android:id="@+id/bike_headline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/alarmPrimary"
+            android:fontFamily="@font/bitter"
+            android:text="@string/bike_detail_bike_name"
+            android:textColor="@color/fontPrimaryLight" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/bike_detail_bike_subtitle"
+            android:textColor="@color/fontPrimaryLight"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <include
+            android:id="@+id/bike_toggle_arm"
+            layout="@layout/bike_action_toggle" />
+
+        <include
+            android:id="@+id/bike_toggle_disarm"
+            layout="@layout/bike_action_toggle" />
+
+        <include
+            android:id="@+id/bike_toggle_settings"
+            layout="@layout/bike_action_toggle" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="#afafaf"
+
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/textbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:padding="30dp">
 
             <TextView
-                android:id="@+id/bike_headline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/bitter"
-                android:text="@string/bike_detail_bike_name"
-                android:textColor="@color/fontPrimaryLight" />
+                android:fontFamily="@font/roboto"
+                android:text="das ist der titel"
+                android:textColor="#000000" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/bike_detail_bike_subtitle"
-                android:textColor="@color/fontPrimaryLight"
-                android:visibility="gone" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:weightSum="3">
-
-            <include layout="@layout/bike_action_toggle"
-                android:id="@+id/bike_toggle_arm" />
-
-            <include layout="@layout/bike_action_toggle"
-                android:id="@+id/bike_toggle_disarm"/>
-
-            <include layout="@layout/bike_action_toggle"
-                android:id="@+id/bike_toggle_settings"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:background="#afafaf"
-
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/textbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:padding="30dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto"
-                    android:text="das ist der titel"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="das ist der untertitel"
-                    android:textColor="#000000"
-                    android:textSize="10sp" />
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="9dp"
-                android:layout_weight="0"
-                android:gravity="center"
-                android:text=">>"
-                android:textAlignment="center"
+                android:text="das ist der untertitel"
                 android:textColor="#000000"
                 android:textSize="10sp" />
-
-
         </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="9dp"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:text=">>"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="10sp" />
 
 
     </LinearLayout>
+
+
+</LinearLayout>

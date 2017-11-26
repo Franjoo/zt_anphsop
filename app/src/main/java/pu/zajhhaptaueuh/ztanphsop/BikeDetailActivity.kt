@@ -1,25 +1,57 @@
 package pu.zajhhaptaueuh.ztanphsop
 
-import android.app.Activity
 import android.os.Bundle
 import android.support.v4.content.res.ResourcesCompat
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 
+
 /**
  * ©Franz Benthin
  */
-class BikeDetailActivity : Activity() {
+class BikeDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bike_detail)
     }
 
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        menuInflater.inflate(R.menu.ab_bike_detail, menu)
+//        return true
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            R.id.action_settings -> {
+//                Log.d("L", "settings")
+//                return true
+//            }
+//            R.id.action_favorite -> {
+//                Log.d("L", "favourite")
+//                return true
+//            }
+//            else -> {
+//                // If we got here, the user's action was not recognized.
+//                // Invoke the superclass to handle it.
+//                return super.onOptionsItemSelected(item)
+//            }
+//        }
+//    }
+
     override fun onResume() {
         super.onResume()
         setupViews()
+        setupActionBar()
+    }
+
+    private fun setupActionBar() {
+        val myToolbar: Toolbar = findViewById(R.id.my_toolbar)
+        myToolbar.setTitleTextAppearance(this, R.style.ToolbarTextAppearance)
+        setSupportActionBar(myToolbar)
     }
 
     private fun setupViews() {

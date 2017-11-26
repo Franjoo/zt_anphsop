@@ -6,4 +6,9 @@
     <!--toggles-->
     <dimen name="toggle_enabled">0.56</dimen>
     <dimen name="toggle_disabled">0.38</dimen>
+
+    <!--text-->
+    <dimen name="toolbar_text_size">18sp</dimen>
+
+
 </resources>
