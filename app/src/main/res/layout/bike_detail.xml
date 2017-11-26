@@ -19,13 +19,12 @@
             android:padding="30dp">
 
             <TextView
+                android:id="@+id/bike_headline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/bitter"
-                android:textStyle="bold"
                 android:text="@string/bike_detail_bike_name"
-                android:textColor="@color/fontPrimaryLight"
-                android:textSize="24sp" />
+                android:textColor="@color/fontPrimaryLight" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -72,6 +71,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto"
                     android:text="das ist der titel"
                     android:textColor="#000000" />
 
