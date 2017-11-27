@@ -26,13 +26,14 @@
         android:layout_height="wrap_content"
         android:background="@color/alarmPrimary"
         android:orientation="vertical"
-        android:padding="30dp">
+        android:padding="@dimen/fj_padding_huge">
 
         <TextView
             android:id="@+id/bike_headline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/bitter"
+            android:textSize="@dimen/fj_text_size_h2"
             android:text="@string/bike_detail_bike_name"
             android:textColor="@color/fontPrimaryLight" />
 

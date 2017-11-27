@@ -4,11 +4,15 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <!--toggles-->
-    <dimen name="toggle_enabled">0.56</dimen>
-    <dimen name="toggle_disabled">0.38</dimen>
+    <dimen name="fj_toggle_enabled_alpha">0.56</dimen>
+    <dimen name="fj_toggle_disabled_alpha">0.38</dimen>
 
     <!--text-->
-    <dimen name="toolbar_text_size">18sp</dimen>
+    <dimen name="fj_toolbar_text_size">18sp</dimen>
+    <dimen name="fj_text_size_h2">20sp</dimen>
+
+    <!--paddings & margins-->
+    <dimen name="fj_padding_huge">20dp</dimen>
 
 
 </resources>
