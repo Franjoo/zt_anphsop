@@ -10,6 +10,9 @@
     <!--text-->
     <dimen name="fj_toolbar_text_size">18sp</dimen>
     <dimen name="fj_text_size_h2">20sp</dimen>
+    <dimen name="fj_text_size_h3">18sp</dimen>
+    <dimen name="fj_text_size_h4">15sp</dimen>
+    <dimen name="fj_text_size_p">14sp</dimen>
 
     <!--paddings & margins-->
     <dimen name="fj_padding_huge">20dp</dimen>
