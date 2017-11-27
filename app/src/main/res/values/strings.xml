@@ -8,4 +8,14 @@
     <string name="arm">arm</string>
     <string name="disarm">disarm</string>
     <string name="settings">settings</string>
+
+    <string name="sightings">Sightings</string>
+    <string name="sightings_info">Find your bike!</string>
+
+    <string name="theft_message">Theft Message</string>
+    <string name="theft_message_info">Edit or delete</string>
+
+    <string name="chats">Chats</string>
+    <string name="chats_sub">Chats to this bike</string>
+
 </resources>
