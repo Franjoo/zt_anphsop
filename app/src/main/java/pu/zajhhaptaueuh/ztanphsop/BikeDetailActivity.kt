@@ -1,5 +1,6 @@
 package pu.zajhhaptaueuh.ztanphsop
 
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
@@ -7,12 +8,10 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.graphics.PorterDuff
-import android.graphics.drawable.Drawable
-import android.R.attr.textColorPrimary
 
 
 /**
@@ -23,17 +22,21 @@ class BikeDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bike_detail)
+        setMenuValues()
     }
 
-//    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-//        super.onPrepareOptionsMenu(menu)
-//
-//        val item = menu.findItem(R.id.action_camera)
-//        val icon = resources.getDrawable(R.drawable.ic_delete_white_24dp)
-//        icon.setColorFilter(resources.getColor(R.color.colorAccent), PorterDuff.Mode.SRC_IN)
-//
-//        item.icon = icon
-//    }
+    private fun setMenuValues() {
+        val stringValues = resources.getStringArray(R.array.bike_detail_list_items)
+        setMenuItemValues(findViewById(R.id.item_find_bike), stringValues[0], stringValues[1])
+        setMenuItemValues(findViewById(R.id.item_sightings), stringValues[2], stringValues[3])
+        setMenuItemValues(findViewById(R.id.item_theft_message), stringValues[4], stringValues[5])
+    }
+
+    private fun setMenuItemValues(holder: ViewGroup, title: String, subTitle: String) {
+        holder.findViewById<TextView>(R.id.head).text = title
+        holder.findViewById<TextView>(R.id.sub).text = subTitle
+        // TODO click listener
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.ab_bike_detail, menu)
@@ -72,8 +75,15 @@ class BikeDetailActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+
         setupViews()
         setupActionBar()
+        setupMenu()
+    }
+
+    private fun setupMenu() {
+
+
     }
 
     private fun setupActionBar() {

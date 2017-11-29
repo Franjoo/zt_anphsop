@@ -18,8 +18,8 @@
 
     <style name="FJ_Divider_Horizontal_Thin">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">2dp</item>
-        <item name="android:background">@color/fontPrimaryLight</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/divider</item>
     </style>
 
 </resources>

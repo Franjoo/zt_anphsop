@@ -19,5 +19,8 @@
     <color name="toggleDeactivated">#97000000</color>
     <color name="toggleActivated">#91000000</color>
 
+    <!--misc-->
+    <color name="divider">#3c4a4a4a</color>
+
 
 </resources>

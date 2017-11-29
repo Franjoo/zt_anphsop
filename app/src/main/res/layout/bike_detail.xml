@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/my_toolbar"
@@ -14,107 +13,85 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:scaleType="centerCrop"
-        android:src="@raw/_bike_detail_header_fallback" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/alarmPrimary"
-        android:orientation="vertical"
-        android:padding="@dimen/fj_padding_huge">
+        android:layout_marginTop="?attr/actionBarSize">
 
-        <TextView
-            android:id="@+id/bike_headline"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/bitter"
-            android:text="@string/bike_detail_bike_name"
-            android:textColor="@color/fontPrimaryLight"
-            android:textSize="@dimen/fj_text_size_h2" />
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/bike_detail_bike_subtitle"
-            android:textColor="@color/fontPrimaryLight"
-            android:visibility="gone" />
-    </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:scaleType="centerCrop"
+                android:src="@raw/_bike_detail_header_fallback" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="3">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/alarmPrimary"
+                android:orientation="vertical"
+                android:padding="@dimen/fj_padding_huge">
 
-        <include
-            android:id="@+id/bike_toggle_arm"
-            layout="@layout/bike_action_toggle" />
+                <TextView
+                    android:id="@+id/bike_headline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bitter"
+                    android:text="@string/bike_detail_bike_name"
+                    android:textColor="@color/fontPrimaryLight"
+                    android:textSize="@dimen/fj_text_size_h2" />
 
-        <include
-            android:id="@+id/bike_toggle_disarm"
-            layout="@layout/bike_action_toggle" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bike_detail_bike_subtitle"
+                    android:textColor="@color/fontPrimaryLight"
+                    android:visibility="gone" />
+            </LinearLayout>
 
-        <include
-            android:id="@+id/bike_toggle_settings"
-            layout="@layout/bike_action_toggle" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
 
-    </LinearLayout>
+                <include
+                    android:id="@+id/bike_toggle_arm"
+                    layout="@layout/bike_action_toggle" />
 
-    <View style="@style/FJ_Divider_Horizontal_Thin" />
+                <include
+                    android:id="@+id/bike_toggle_disarm"
+                    layout="@layout/bike_action_toggle" />
 
+                <include
+                    android:id="@+id/bike_toggle_settings"
+                    layout="@layout/bike_action_toggle" />
 
-    <include
-        android:id="@+id/item_0"
-        layout="@layout/list_item" />
+            </LinearLayout>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
+            <View style="@style/FJ_Divider_Horizontal_Thin" />
 
-        <!--android:orientation="horizontal">-->
+            <include
+                android:id="@+id/item_sightings"
+                layout="@layout/list_item" />
 
-        <!--<LinearLayout-->
-            <!--android:id="@+id/textbar"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_weight="1"-->
-            <!--android:orientation="vertical"-->
-            <!--android:padding="30dp">-->
+            <View style="@style/FJ_Divider_Horizontal_Thin" />
 
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:fontFamily="@font/roboto"-->
-                <!--android:text="das ist der titel"-->
-                <!--android:textColor="#000000" />-->
+            <include
+                android:id="@+id/item_find_bike"
+                layout="@layout/list_item" />
 
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="das ist der untertitel"-->
-                <!--android:textColor="#000000"-->
-                <!--android:textSize="10sp" />-->
-        <!--</LinearLayout>-->
+            <View style="@style/FJ_Divider_Horizontal_Thin" />
 
+            <include
+                android:id="@+id/item_theft_message"
+                layout="@layout/list_item" />
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_margin="9dp"-->
-            <!--android:layout_weight="0"-->
-            <!--android:gravity="center"-->
-            <!--android:text=">>"-->
-            <!--android:textAlignment="center"-->
-            <!--android:textColor="#000000"-->
-            <!--android:textSize="10sp" />-->
+        </LinearLayout>
+    </ScrollView>
 
-
-    <!--</LinearLayout>-->
-
-
-</LinearLayout>
+</FrameLayout>

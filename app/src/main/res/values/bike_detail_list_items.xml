@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Menu Strings -->
-    <string name="menu_sightings">Sightings</string>
-    <string name="menu_sightings_info">Find your bike!</string>
+    <string-array name="bike_detail_list_items">
 
-    <string name="menu_theft_message">Theft Message</string>
-    <string name="menu_theft_message_info">Edit or delete</string>
+        <item>Sightings</item>
+        <item>Find your bike!</item>
 
-    <string name="menu_chats">Chats</string>
-    <string name="menu_chats_sub">Chats to this bike</string>
+        <item>Theft Message</item>
+        <item>Edit or delete</item>
+
+        <item>Chats</item>
+        <item>Chats to this bike</item>
+
+    </string-array>
 
 </resources>
