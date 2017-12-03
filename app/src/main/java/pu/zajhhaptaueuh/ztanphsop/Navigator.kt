@@ -20,17 +20,26 @@ class Navigator {
 
         private val TAG: String = "Navigator"
 
+
+        fun gotoSightingsActivity(context: Context) {
+            // TODO
+        }
+
+        fun gotoRegisterInsectActivity(context: Context) {
+            // TODO
+        }
+
+        fun gotoTheftMessageActivity(context: Context) {
+            // TODO
+        }
+
         fun gotoChatsActivity(context: Context) {
             val intent = Intent(context, ChatsActivity::class.java)
             intent.putExtra(AlarmClock.EXTRA_MESSAGE, context.getString(R.string.dummy_extra_string))
             context.startActivity(intent)
         }
 
-        fun gotoSightingsActivity(context: Context) {
-            // TODO
-        }
-
-        fun gotoTheftMessageActivity(context: Context) {
+        fun gotoQrSafetyActivity(context: Context) {
             // TODO
         }
 
