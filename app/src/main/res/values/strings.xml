@@ -18,5 +18,6 @@
     <string name="chats">Chats</string>
     <string name="chats_sub">Chats to this bike</string>
     <string name="not_implemented_yet">[ not implemented yet ]</string>
+    <string name="dummy_extra_string">dummy message</string>
 
 </resources>

@@ -8,13 +8,11 @@ import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.provider.AlarmClock.EXTRA_MESSAGE
-import android.content.Intent
-import android.view.View
 
 
 /* Copyright (C) million hunters GmbH - All Rights Reserved
@@ -44,9 +42,9 @@ class BikeDetailActivity : AppCompatActivity() {
         // handle menu clicks
         val listener: View.OnClickListener = View.OnClickListener {
             when (it.id) {
-                R.id.item_find_bike -> gotoChatsActivity()
-                R.id.item_sightings -> gotoChatsActivity()
-                R.id.item_theft_message -> gotoChatsActivity()
+                R.id.item_find_bike -> Navigator.Companion.gotoChatsActivity(this)
+                R.id.item_sightings -> Navigator.Companion.gotoChatsActivity(this)
+                R.id.item_theft_message -> Navigator.Companion.gotoChatsActivity(this)
             }
         }
 
@@ -153,10 +151,5 @@ class BikeDetailActivity : AppCompatActivity() {
         icon.setImageResource(iconId)
     }
 
-    private fun gotoChatsActivity() {
-        val intent = Intent(this, ChatsActivity::class.java)
-        intent.putExtra(EXTRA_MESSAGE, "dummy message")
-        startActivity(intent)
-    }
 
 }
