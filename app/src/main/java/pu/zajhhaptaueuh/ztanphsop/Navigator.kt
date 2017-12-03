@@ -12,16 +12,26 @@ import android.provider.AlarmClock
 
 /**
  * The Navigator provides methods for setting up intent extras and starting Activity transitions.
- * It also handles the Activity Backstack.
+ * It is also responsible for handling the Activity Backstack.
  */
 class Navigator {
 
     companion object {
 
+        private val TAG: String = "Navigator"
+
         fun gotoChatsActivity(context: Context) {
             val intent = Intent(context, ChatsActivity::class.java)
             intent.putExtra(AlarmClock.EXTRA_MESSAGE, context.getString(R.string.dummy_extra_string))
             context.startActivity(intent)
+        }
+
+        fun gotoSightingsActivity(context: Context) {
+            // TODO
+        }
+
+        fun gotoTheftMessageActivity(context: Context) {
+            // TODO
         }
 
     }
