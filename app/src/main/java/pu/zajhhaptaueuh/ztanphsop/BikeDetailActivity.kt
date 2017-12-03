@@ -12,6 +12,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.provider.AlarmClock.EXTRA_MESSAGE
+import android.content.Intent
+import android.view.View
 
 
 /* Copyright (C) million hunters GmbH - All Rights Reserved
@@ -22,13 +25,38 @@ import android.widget.TextView
 
 class BikeDetailActivity : AppCompatActivity() {
 
-//    private val Tag: String = BikeDetailActivity::class.simpleName as String;
-    private val Tag: String = "BikeDetailActivity"
+    //    private val TAG: String = BikeDetailActivity::class.simpleName as String;
+    companion object {
+        const val TAG = "BikeDetailActivity"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bike_detail)
         setMenuValues()
+        setupMenuClickListener()
+
+        Log.v(TAG, "created")
+    }
+
+    private fun setupMenuClickListener() {
+
+        // handle menu clicks
+        val listener: View.OnClickListener = View.OnClickListener {
+            when (it.id) {
+                R.id.item_find_bike -> gotoChatsActivity()
+                R.id.item_sightings -> gotoChatsActivity()
+                R.id.item_theft_message -> gotoChatsActivity()
+            }
+        }
+
+        // assign listener to all menu items
+        mutableListOf<ViewGroup>(
+                findViewById(R.id.item_find_bike),
+                findViewById(R.id.item_sightings),
+                findViewById(R.id.item_theft_message))
+                .forEach { v -> v.setOnClickListener(listener) }
+
     }
 
     private fun setMenuValues() {
@@ -123,6 +151,12 @@ class BikeDetailActivity : AppCompatActivity() {
         val tv: TextView = findViewById<LinearLayout>(parentId).getChildAt(1) as TextView
         tv.text = resources.getString(stringID)
         icon.setImageResource(iconId)
+    }
+
+    private fun gotoChatsActivity() {
+        val intent = Intent(this, ChatsActivity::class.java)
+        intent.putExtra(EXTRA_MESSAGE, "dummy message")
+        startActivity(intent)
     }
 
 }
