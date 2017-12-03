@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import pu.zajhhaptaueuh.ztanphsop.utils.Utils
 
 
 /* Copyright (C) million hunters GmbH - All Rights Reserved
@@ -35,6 +36,28 @@ class BikeDetailActivity : AppCompatActivity() {
         setupMenuClickListener()
 
         Log.v(TAG, "created")
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_camera -> {
+                Log.d("L", "settings")
+            }
+            R.id.action_edit -> {
+                Log.d("L", "favourite")
+            }
+
+            R.id.action_delete -> {
+                Log.d("L", "favourite")
+            }
+            else -> {
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item)
+            }
+        }
+
+        return true
     }
 
     private fun setupMenuClickListener() {
@@ -75,34 +98,10 @@ class BikeDetailActivity : AppCompatActivity() {
         for (i in 0 until menu.size()) {
             val drawable = menu.getItem(i).icon
             if (drawable != null) {
-                drawable.mutate()
-                drawable.setColorFilter(resources.getColor(R.color.toggleActivated), PorterDuff.Mode.SRC_ATOP)
+                Utils.tintDrawable(drawable, resources.getColor(R.color.toggleActivated))
             }
         }
         return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_camera -> {
-                Log.d("L", "settings")
-                return true
-            }
-            R.id.action_edit -> {
-                Log.d("L", "favourite")
-                return true
-            }
-
-            R.id.action_delete -> {
-                Log.d("L", "favourite")
-                return true
-            }
-            else -> {
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item)
-            }
-        }
     }
 
     override fun onResume() {
@@ -114,8 +113,7 @@ class BikeDetailActivity : AppCompatActivity() {
     }
 
     private fun setupMenu() {
-
-
+        // todo handle current insect mode state
     }
 
     private fun setupActionBar() {
@@ -141,7 +139,6 @@ class BikeDetailActivity : AppCompatActivity() {
         // headline
         val headline: TextView = findViewById(R.id.bike_headline)
         headline.typeface = ResourcesCompat.getFont(applicationContext, R.font.bitter)
-
     }
 
     private fun setupToggle(parentId: Int, stringID: Int, iconId: Int) {
