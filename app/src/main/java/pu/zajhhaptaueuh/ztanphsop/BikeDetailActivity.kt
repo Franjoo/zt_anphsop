@@ -1,6 +1,7 @@
 package pu.zajhhaptaueuh.ztanphsop
 
 import android.graphics.PorterDuff
+import android.nfc.Tag
 import android.os.Bundle
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
@@ -14,10 +15,16 @@ import android.widget.LinearLayout
 import android.widget.TextView
 
 
-/**
- * ©Franz Benthin
+/* Copyright (C) million hunters GmbH - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential.
+ * Created by Franz Benthin <franz.benthin@fahrradjaeger.de>, 12 2017
  */
+
 class BikeDetailActivity : AppCompatActivity() {
+
+//    private val Tag: String = BikeDetailActivity::class.simpleName as String;
+    private val Tag: String = "BikeDetailActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

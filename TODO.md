@@ -1,1 +1,0 @@
-- coloured vector drawables, do not use tinting
