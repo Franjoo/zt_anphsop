@@ -10,6 +10,10 @@ import android.provider.AlarmClock
  * Created by Franz Benthin <franz.benthin@fahrradjaeger.de>, 12 2017
  */
 
+/**
+ * The Navigator provides methods for setting up intent extras and starting Activity transitions.
+ * It also handles the Activity Backstack.
+ */
 class Navigator {
 
     companion object {
