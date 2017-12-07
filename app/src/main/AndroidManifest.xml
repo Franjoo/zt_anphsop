@@ -11,7 +11,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <activity
-            android:name="pu.zajhhaptaueuh.ztanphsop.BikeDetailActivity"
+            android:name="pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.BikeDetailActivity"
             android:label="Bike Detail">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ChatsActivity" android:parentActivityName=".BikeDetailActivity"/>
+        <activity android:name=".usecases.bikedetail.ChatsActivity" android:parentActivityName=".usecases.bikedetail.BikeDetailActivity"/>
+        <activity android:name="._dummy.NotImplementedActivity" android:parentActivityName=".usecases.bikedetail.BikeDetailActivity"/>
 
     </application>
 

@@ -1,4 +1,4 @@
-package pu.zajhhaptaueuh.ztanphsop
+package pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail
 
 import android.graphics.PorterDuff
 import android.os.Bundle
@@ -13,6 +13,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import pu.zajhhaptaueuh.ztanphsop.navigation.Navigator
+import pu.zajhhaptaueuh.ztanphsop.R
 import pu.zajhhaptaueuh.ztanphsop.utils.Utils
 
 
@@ -65,9 +67,9 @@ class BikeDetailActivity : AppCompatActivity() {
         // handle menu clicks
         val listener: View.OnClickListener = View.OnClickListener {
             when (it.id) {
-                R.id.item_find_bike -> Navigator.Companion.gotoChatsActivity(this)
-                R.id.item_sightings -> Navigator.Companion.gotoChatsActivity(this)
-                R.id.item_theft_message -> Navigator.Companion.gotoChatsActivity(this)
+                R.id.item_find_bike -> Navigator.gotoChatsActivity(this)
+                R.id.item_sightings -> Navigator.gotoChatsActivity(this)
+                R.id.item_theft_message -> Navigator.gotoChatsActivity(this)
             }
         }
 

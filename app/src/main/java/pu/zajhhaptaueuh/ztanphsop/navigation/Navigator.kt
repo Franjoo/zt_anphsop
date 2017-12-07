@@ -1,8 +1,11 @@
-package pu.zajhhaptaueuh.ztanphsop
+package pu.zajhhaptaueuh.ztanphsop.navigation
 
 import android.content.Context
 import android.content.Intent
 import android.provider.AlarmClock
+import pu.zajhhaptaueuh.ztanphsop.R
+import pu.zajhhaptaueuh.ztanphsop._dummy.NotImplementedActivity
+import pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.ChatsActivity
 
 /* Copyright (C) million hunters GmbH - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
@@ -42,6 +45,11 @@ class Navigator {
         fun gotoQrSafetyActivity(context: Context) {
             // TODO
         }
+
+        fun gotoNotImplementedActivity(context: Context, idenifier:String) {
+            val intent = Intent(context, NotImplementedActivity::class.java)
+            intent.putExtra(AlarmClock.EXTRA_MESSAGE, context.getString(R.string.dummy_extra_string))
+            context.startActivity(intent)        }
 
     }
 }
