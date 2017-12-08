@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pu.zajhhaptaueuh.ztanphsop">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,17 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
+
         <activity
             android:name="pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.BikeDetailActivity"
-            android:label="Bike Detail">
+            android:label="Bike Detail 2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity android:name=".usecases.BaseActivity" android:parentActivityName=".usecases.bikedetail.BikeDetailActivity"/>
+        <activity android:name=".usecases.NotImplementedActivity" android:parentActivityName=".usecases.bikedetail.BikeDetailActivity"/>
+
         <activity android:name=".usecases.bikedetail.ChatsActivity" android:parentActivityName=".usecases.bikedetail.BikeDetailActivity"/>
-        <activity android:name="._dummy.NotImplementedActivity" android:parentActivityName=".usecases.bikedetail.BikeDetailActivity"/>
+        <activity android:name=".usecases.bikedetail.ChaseMapActivity" android:parentActivityName=".usecases.bikedetail.BikeDetailActivity"/>
 
     </application>
 

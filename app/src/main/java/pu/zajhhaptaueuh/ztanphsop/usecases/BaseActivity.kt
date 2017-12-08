@@ -6,25 +6,20 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import pu.zajhhaptaueuh.ztanphsop.R
 
-/* Copyright (C) million hunters GmbH - All Rights Reserved
+/* Copyright (Constants) million hunters GmbH - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential.
  * Created by Franz Benthin <franz.benthin@fahrradjaeger.de>, 12 2017
  */
 open class BaseActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setupActionBar()
+    override fun onStart() {
+        super.onStart()
+    setupActionBar()
     }
 
-    override fun onResume() {
-        super.onResume()
 
-        setupActionBar()
-    }
-
-    private fun setupActionBar() {
+    protected fun setupActionBar() {
         val toolbar: Toolbar = findViewById(R.id.my_toolbar)
         toolbar.setTitleTextAppearance(this, R.style.ToolbarTextAppearance)
         setSupportActionBar(toolbar)
