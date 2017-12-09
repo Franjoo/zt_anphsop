@@ -22,7 +22,6 @@ class NotImplementedActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.not_implemented_layout)
 
-
         val text = intent.getStringExtra(EXTRA_IDENTIFIER)
         findViewById<TextView>(R.id.not_implemented_tv)!!.text = ("[ $text not implemented yet ]")
     }

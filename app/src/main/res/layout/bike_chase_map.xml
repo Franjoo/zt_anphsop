@@ -6,7 +6,6 @@
 
     <include layout="@layout/toolbar" />
 
-
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
@@ -14,7 +13,7 @@
         android:layout_marginTop="?attr/actionBarSize"
         mapbox:mapbox_cameraTargetLat="54.077864"
         mapbox:mapbox_cameraTargetLng="12.093525"
-        mapbox:mapbox_cameraZoom="11"
-        mapbox:mapbox_styleUrl="mapbox://styles/mapbox/streets-v10" />
+        mapbox:mapbox_cameraZoom="3"
+        mapbox:mapbox_styleUrl="mapbox://styles/franjoo/cjaycq1r7onhe2so13vz1b4ow" />
 
 </RelativeLayout>

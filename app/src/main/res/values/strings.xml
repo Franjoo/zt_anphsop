@@ -21,5 +21,8 @@
     <!-- debug & dummy strings -->
     <string name="not_implemented_yet">[ not implemented yet ]</string>
     <string name="dummy_extra_string">dummy message</string>
+    <string name="screen_title_chats">Chats</string>
+    <string name="screen_title_sightings">Sightings</string>
+    <string name="screen_title_bike_edit">Edit</string>
 
 </resources>

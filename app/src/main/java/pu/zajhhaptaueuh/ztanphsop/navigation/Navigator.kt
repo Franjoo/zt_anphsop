@@ -7,6 +7,7 @@ import pu.zajhhaptaueuh.ztanphsop.R
 import pu.zajhhaptaueuh.ztanphsop.usecases.NotImplementedActivity
 import pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.ChaseMapActivity
 import pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.ChatsActivity
+import pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.EditBikeActivity
 
 /* Copyright (Constants) million hunters GmbH - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
@@ -24,11 +25,16 @@ class Navigator {
 
         private val TAG: String = "Navigator"
 
+        fun gotoEditBikeActivity(context: Context) {
+            val intent = Intent(context, EditBikeActivity::class.java)
+            context.startActivity(intent)
+        }
 
         fun gotoSightingsActivity(context: Context) {
             val intent = Intent(context, ChaseMapActivity::class.java)
 //            intent.putExtra(NotImplementedActivity.EXTRA_IDENTIFIER, identifier)
-            context.startActivity(intent)        }
+            context.startActivity(intent)
+        }
 
         fun gotoRegisterInsectActivity(context: Context) {
             // TODO

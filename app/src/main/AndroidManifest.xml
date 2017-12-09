@@ -14,20 +14,32 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
 
-        <activity
-            android:name="pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.BikeDetailActivity"
-            android:label="Bike Detail 2">
+        <activity android:name="pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.BikeDetailActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".usecases.BaseActivity" android:parentActivityName=".usecases.bikedetail.BikeDetailActivity"/>
-        <activity android:name=".usecases.NotImplementedActivity" android:parentActivityName=".usecases.bikedetail.BikeDetailActivity"/>
+        <activity
+            android:name=".usecases.BaseActivity"
+            android:parentActivityName=".usecases.bikedetail.BikeDetailActivity" />
+        <activity
+            android:name=".usecases.NotImplementedActivity"
+            android:parentActivityName=".usecases.bikedetail.BikeDetailActivity" />
 
-        <activity android:name=".usecases.bikedetail.ChatsActivity" android:parentActivityName=".usecases.bikedetail.BikeDetailActivity"/>
-        <activity android:name=".usecases.bikedetail.ChaseMapActivity" android:parentActivityName=".usecases.bikedetail.BikeDetailActivity"/>
+        <activity
+            android:name=".usecases.bikedetail.ChatsActivity"
+            android:label="@string/screen_title_chats"
+            android:parentActivityName=".usecases.bikedetail.BikeDetailActivity" />
+        <activity
+            android:name=".usecases.bikedetail.ChaseMapActivity"
+            android:label="@string/screen_title_sightings"
+            android:parentActivityName=".usecases.bikedetail.BikeDetailActivity" />
+        <activity
+            android:name=".usecases.bikedetail.EditBikeActivity"
+            android:label="@string/screen_title_bike_edit"
+            android:parentActivityName=".usecases.bikedetail.BikeDetailActivity" />
 
     </application>
 

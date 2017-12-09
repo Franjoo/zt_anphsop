@@ -4,4 +4,17 @@
     <string name="arm">scharf stellen</string>
     <string name="disarm">entschärfen</string>
     <string name="settings">einstellungen</string>
+    <string name="screen_title_chats">Unterhaltungen</string>
+    <string name="screen_title_bike_edit">Fahrraddaten</string>
+    <string name="screen_title_sightings">Sichtungen</string>
+    <string name="bike_detail_bike_name">Flipper</string>
+    <string name="bike_detail_bike_subtitle">der Delfin</string>
+    <string name="sightings">Sichtungen</string>
+    <string name="dummy_extra_string">dummy message</string>
+    <string name="title_notifications">Benachrichtigungen</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="theft_message_info">Anpassen und Löschen</string>
+    <string name="theft_message">Diebstahl Nachricht</string>
+    <string name="sightings_info">Finde Dein Fahrrad!</string>
+    <string name="chats_sub">Chats zu diesem Fahrrad</string>
 </resources>

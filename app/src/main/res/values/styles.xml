@@ -16,6 +16,12 @@
 
     </style>
 
+    <style name="FJ_Toolbar_Spacer">
+        <item name="android:layout_marginTop">?attr/actionBarSize</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
     <style name="FJ_Divider_Horizontal_Thin">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">1dp</item>

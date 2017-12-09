@@ -1,10 +1,7 @@
 package pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail
 
-import android.graphics.PorterDuff
 import android.os.Bundle
 import android.support.v4.content.res.ResourcesCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -13,8 +10,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import pu.zajhhaptaueuh.ztanphsop.navigation.Navigator
 import pu.zajhhaptaueuh.ztanphsop.R
+import pu.zajhhaptaueuh.ztanphsop.navigation.Navigator
+import pu.zajhhaptaueuh.ztanphsop.usecases.BaseActivity
 import pu.zajhhaptaueuh.ztanphsop.utils.Utils
 
 
@@ -24,7 +22,7 @@ import pu.zajhhaptaueuh.ztanphsop.utils.Utils
  * Created by Franz Benthin <franz.benthin@fahrradjaeger.de>, 12 2017
  */
 
-class BikeDetailActivity : AppCompatActivity() {
+class BikeDetailActivity : BaseActivity() {
 
     //    private val TAG: String = BikeDetailActivity::class.simpleName as String;
     companion object {
@@ -46,7 +44,7 @@ class BikeDetailActivity : AppCompatActivity() {
                 Log.d("L", "settings")
             }
             R.id.action_edit -> {
-                Log.d("L", "favourite")
+                Navigator.gotoEditBikeActivity(this)
             }
 
             R.id.action_delete -> {
@@ -110,25 +108,12 @@ class BikeDetailActivity : AppCompatActivity() {
         super.onResume()
 
         setupViews()
-        setupActionBar()
+        setupActionBar(null)
         setupMenu()
     }
 
     private fun setupMenu() {
         // todo handle current insect mode state
-    }
-
-    private fun setupActionBar() {
-        val toolbar: Toolbar = findViewById(R.id.my_toolbar)
-        toolbar.setTitleTextAppearance(this, R.style.ToolbarTextAppearance)
-        setSupportActionBar(toolbar)
-
-        // prepare home icon
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val homeIndicatorDrawable = ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_back_white_24dp, null)
-        homeIndicatorDrawable!!.mutate()
-        homeIndicatorDrawable.setColorFilter(resources.getColor(R.color.toggleActivated), PorterDuff.Mode.SRC_ATOP)
-        supportActionBar?.setHomeAsUpIndicator(homeIndicatorDrawable)
     }
 
     private fun setupViews() {
