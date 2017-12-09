@@ -3,6 +3,7 @@ package pu.zajhhaptaueuh.ztanphsop.navigation
 import android.content.Context
 import android.content.Intent
 import android.provider.AlarmClock
+import android.util.Log
 import pu.zajhhaptaueuh.ztanphsop.R
 import pu.zajhhaptaueuh.ztanphsop.usecases.NotImplementedActivity
 import pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.ChaseMapActivity
@@ -21,43 +22,42 @@ import pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.EditBikeActivity
  */
 class Navigator {
 
-    val TAG = Navigator::class.simpleName
-
     companion object {
+
+        private val TAG = Navigator::class.simpleName
+        private val OP_GOTO = "Start Activity: "
+
 
         fun gotoEditBikeActivity(context: Context) {
             val intent = Intent(context, EditBikeActivity::class.java)
             context.startActivity(intent)
+
+            Log.i(TAG, OP_GOTO + EditBikeActivity::class.simpleName)
         }
 
         fun gotoSightingsActivity(context: Context) {
             val intent = Intent(context, ChaseMapActivity::class.java)
 //            intent.putExtra(NotImplementedActivity.EXTRA_IDENTIFIER, identifier)
             context.startActivity(intent)
+
+            Log.i(TAG, OP_GOTO + ChaseMapActivity::class.simpleName)
         }
 
-        fun gotoRegisterInsectActivity(context: Context) {
-            // TODO
-        }
-
-        fun gotoTheftMessageActivity(context: Context) {
-            // TODO
-        }
 
         fun gotoChatsActivity(context: Context) {
             val intent = Intent(context, ChatsActivity::class.java)
             intent.putExtra(AlarmClock.EXTRA_MESSAGE, context.getString(R.string.dummy_extra_string))
             context.startActivity(intent)
-        }
 
-        fun gotoQrSafetyActivity(context: Context) {
-            // TODO
+            Log.i(TAG, OP_GOTO + ChatsActivity::class.simpleName)
         }
 
         fun gotoNotImplementedActivity(context: Context, identifier: String) {
             val intent = Intent(context, NotImplementedActivity::class.java)
             intent.putExtra(NotImplementedActivity.EXTRA_IDENTIFIER, identifier)
             context.startActivity(intent)
+
+            Log.i(TAG, OP_GOTO + NotImplementedActivity::class.simpleName + "/  $identifier")
         }
 
     }
