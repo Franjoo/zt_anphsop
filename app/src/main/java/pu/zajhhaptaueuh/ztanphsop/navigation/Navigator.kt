@@ -21,9 +21,9 @@ import pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.EditBikeActivity
  */
 class Navigator {
 
-    companion object {
+    val TAG = Navigator::class.simpleName
 
-        private val TAG: String = "Navigator"
+    companion object {
 
         fun gotoEditBikeActivity(context: Context) {
             val intent = Intent(context, EditBikeActivity::class.java)

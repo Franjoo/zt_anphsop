@@ -40,16 +40,9 @@ class BikeDetailActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_camera -> {
-                Log.d("L", "settings")
-            }
-            R.id.action_edit -> {
-                Navigator.gotoEditBikeActivity(this)
-            }
-
-            R.id.action_delete -> {
-                Log.d("L", "favourite")
-            }
+            R.id.action_camera -> Navigator.gotoNotImplementedActivity(this, "edit images")
+            R.id.action_edit -> Navigator.gotoEditBikeActivity(this)
+            R.id.action_delete -> Navigator.gotoNotImplementedActivity(this, "delete bike")
             else -> {
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.

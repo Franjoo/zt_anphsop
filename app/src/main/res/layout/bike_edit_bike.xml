@@ -105,6 +105,8 @@
                     <Spinner
                         android:id="@+id/input_picker_secondary_color"
                         style="@style/FJ_Form_Spinner_Half"
+                        android:dropDownHeight="20dp"
+                        android:spinnerMode="dropdown"
                         android:entries="@array/choices_bike_color" />
 
                 </android.support.design.widget.TextInputLayout>
