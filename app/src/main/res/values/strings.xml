@@ -30,6 +30,21 @@
     <string name="screen_title_sightings">Sightings</string>
     <string name="screen_title_bike_edit">Edit</string>
 
+    <!-- colors -->
+    <string name="color_blue">blue</string>
+    <string name="color_brown">brown</string>
+    <string name="color_yellow">yellow</string>
+    <string name="color_grey">grey</string>
+    <string name="color_green">green</string>
+    <string name="color_violet">violet</string>
+    <string name="color_orange">orange</string>
+    <string name="color_pink">pink</string>
+    <string name="color_red">red</string>
+    <string name="color_black">black</string>
+    <string name="color_silver">silver</string>
+    <string name="color_white">white</string>
+
+
     <!-- form and validation strings -->
     <string name="hint_bike_name">bike name</string>
     <string name="hint_bike_type">bike Type</string>

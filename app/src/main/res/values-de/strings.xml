@@ -29,4 +29,17 @@
     <string name="bike_privacy_note_2">Alle folgenden Angaben sind optional aber könnten helfen im Falle eines Diebstahls Dein Fahrrad wiederzubekommen</string>
     <string name="hint_bike_size">Radgröße (in Zoll)</string>
     <string name="btn_save_changes">Änderungen speichern</string>
+    <string name="color_blue">blau</string>
+    <string name="color_brown">braun</string>
+    <string name="color_yellow">gelb</string>
+    <string name="color_grey">grau</string>
+    <string name="color_green">grün</string>
+    <string name="color_violet">lila</string>
+    <string name="color_orange">orange</string>
+    <string name="color_pink">rosa</string>
+    <string name="color_red">rot</string>
+    <string name="color_black">schwarz</string>
+    <string name="color_silver">silber</string>
+    <string name="color_white">weiß</string>
+    <string name="bike_private_notes">Anmerkungen</string>
 </resources>

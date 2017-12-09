@@ -81,12 +81,20 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
 
-                    <EditText
-                        android:id="@+id/input_bike_secondary_color"
+                    <!--<EditText-->
+                        <!--android:id="@+id/input_bike_secondary_color"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:hint="@string/hint_bike_secondary_color"-->
+                        <!--android:singleLine="true" />-->
+
+                    <Spinner
+                        android:id="@+id/input_picker_primary_color2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/hint_bike_secondary_color"
-                        android:singleLine="true" />
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"/>
+
                 </android.support.design.widget.TextInputLayout>
 
                 <!-- secondary color -->
