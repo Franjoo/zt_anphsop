@@ -9,11 +9,10 @@
 
     <!--font colors-->
     <color name="fontPrimaryLight">#FAE3E3</color>
-    <color name="fontPrimaryDark">#141414</color>
-    <color name="fontAccentDark">#626262</color>
+    <color name="fontPrimaryDark">#333333</color>
+    <color name="fontAccentDark">#61000000</color>
 
     <color name="alarmPrimary">#D7353D</color>
-    <color name="backgroundLight">#F9F9F9</color>
 
     <!--toggles-->
     <color name="toggleDeactivated">#97000000</color>
@@ -21,6 +20,9 @@
 
     <!--misc-->
     <color name="divider">#3c4a4a4a</color>
+    <color name="fj_green">#4de17d</color>
+    <color name="backgroundLight">#fafafa</color>
+
 
 
 </resources>

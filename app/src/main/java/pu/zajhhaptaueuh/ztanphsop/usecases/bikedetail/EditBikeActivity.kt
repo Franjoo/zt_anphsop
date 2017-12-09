@@ -15,6 +15,7 @@ class EditBikeActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bike_edit_bike)
+        setupActionBar(null)
     }
 
 

@@ -13,7 +13,16 @@
         <item name="android:textSize">@dimen/fj_toolbar_text_size</item>
         <item name="android:textColorPrimary">#fa0</item>
         <item name="colorControlNormal">#fac</item>
+    </style>
 
+    <!-- ###### -->
+
+    <style name="EditTextHint" parent="TextAppearance.AppCompat">
+        <item name="colorAccent">@android:color/white</item>
+        <item name="android:textColorHint">@color/fontAccentDark</item>
+        <item name="colorControlNormal">@color/fontAccentDark</item>
+        <item name="colorControlActivated">@color/fontAccentDark</item>
+        <item name="colorControlHighlight">@color/fontAccentDark</item>
     </style>
 
     <style name="FJ_Toolbar_Spacer">
@@ -31,21 +40,30 @@
     <style name="FJ_TextView_Dark">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:fontFamily">@font/bitter</item>
-        <item name="android:textColor">@color/toggleActivated</item>
+        <item name="android:textColor">@color/fontPrimaryDark</item>
         <item name="android:textSize">@dimen/fj_text_size_p</item>
+    </style>
+
+
+    <style name="FJ_H2_Dark" parent="FJ_TextView_Dark">
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:fontFamily">@font/bitter</item>
+        <item name="android:textSize">@dimen/fj_text_size_h2</item>
     </style>
 
     <style name="FJ_H4_Dark" parent="FJ_TextView_Dark">
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">6dp</item>
+        <item name="android:fontFamily">@font/roboto</item>
         <item name="android:textSize">@dimen/fj_text_size_h4</item>
     </style>
 
-    <style name="FJ_H2_Dark" parent="FJ_TextView_Dark">
-        <item name="android:paddingTop">14dp</item>
-        <item name="android:paddingBottom">10dp</item>
-        <item name="android:textSize">@dimen/fj_text_size_h2</item>
+    <style name="FJ_P_Dark" parent="FJ_TextView_Dark">
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">@dimen/fj_text_size_p</item>
     </style>
 
     <!-- FORM STYLES -->
@@ -59,11 +77,21 @@
         <item name="android:paddingBottom">@dimen/fj_form_padding_top</item>
     </style>
 
-    <style name="FJ_Hint_Top_TV">
+    <style name="FJ_Hint_Top_TV" parent="FJ_P_Dark">
+        <item name="android:textColor">@color/fontAccentDark</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">@dimen/fj_padding_small</item>
         <item name="android:textSize">@dimen/fj_text_size_floating_hint</item>
+    </style>
+
+    <style name="FJ_Edit_Text" parent="FJ_P_Dark">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/fj_padding_edit_text</item>
+        <item name="android:paddingBottom">@dimen/fj_padding_edit_text</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColorHint">@color/fontAccentDark</item>
     </style>
 
     <style name="FJ_Form_Spinner_Half">
