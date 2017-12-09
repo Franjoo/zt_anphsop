@@ -37,6 +37,8 @@
     <string name="hint_bike_primary_color">primary color</string>
     <string name="hint_bike_secondary_color">secondary color</string>
     <string name="hint_bike_identification_number">identification number</string>
+    <string name="hint_bike_size">bike size</string>
+
 
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>

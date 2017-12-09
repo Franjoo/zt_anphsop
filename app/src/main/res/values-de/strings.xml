@@ -24,4 +24,9 @@
     <string name="hint_bike_secondary_color">Nebenfarbe</string>
     <string name="hint_bike_identification_number">Rahmennummer</string>
     <string name="bike_privacy_note_1">Diese Informationen werden auf unserer Website und der App veröffentlicht, we Du Dein Fahrrad gestohlen meldest.</string>
+    <string name="bike_characteristics">Steckbrief</string>
+    <string name="bike_more_details">Weitere Details</string>
+    <string name="bike_privacy_note_2">Alle folgenden Angaben sind optional aber könnten helfen im Falle eines Diebstahls Dein Fahrrad wiederzubekommen</string>
+    <string name="hint_bike_size">Radgröße (in Zoll)</string>
+    <string name="btn_save_changes">Änderungen speichern</string>
 </resources>

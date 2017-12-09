@@ -11,16 +11,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="?attr/actionBarSize">
 
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="60dp">
+        <LinearLayout style="@style/FJ_Form_Holder">
 
             <!-- bike name -->
             <android.support.design.widget.TextInputLayout
@@ -39,14 +33,10 @@
             <!-- characteristics text section -->
             <TextView
                 style="@style/FJ_H2_Dark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="@string/bike_characteristics" />
 
             <TextView
                 style="@style/FJ_H4_Dark"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:text="@string/bike_privacy_note_1" />
 
             <!-- bike type -->
@@ -81,6 +71,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:baselineAligned="false"
                 android:orientation="horizontal">
 
                 <!-- primary color -->
@@ -115,32 +106,61 @@
 
             </LinearLayout>
 
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Polizeilich registriert?" />
 
-            <!--<android.support.design.widget.TextInputLayout-->
-            <!--android:id="@+id/input_layout_email"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
+            <!-- bike color section picker -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
-            <!--<EditText-->
-            <!--android:id="@+id/input_email"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="@string/hint_email"-->
-            <!--android:inputType="textEmailAddress" />-->
-            <!--</android.support.design.widget.TextInputLayout>-->
+                <!-- primary color -->
+                <Spinner
+                    android:id="@+id/input_picker_primary_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:entries="@array/choices_bike_color" />
 
-            <!--<android.support.design.widget.TextInputLayout-->
-            <!--android:id="@+id/input_layout_password"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
+                <!-- secondary color -->
+                <Spinner
+                    android:id="@+id/input_picker_secondary_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:entries="@array/choices_bike_color" />
+            </LinearLayout>
 
-            <!--<EditText-->
-            <!--android:id="@+id/input_password"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:hint="@string/hint_password"-->
-            <!--android:inputType="textPassword" />-->
-            <!--</android.support.design.widget.TextInputLayout>-->
+            <!-- bike manufacturer -->
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/input_layout_bike_size"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/input_bike_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_bike_size"
+                    android:inputType="number"
+                    android:singleLine="true" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!-- more details text section -->
+            <TextView
+                style="@style/FJ_H2_Dark"
+                android:text="@string/bike_more_details" />
+
+            <TextView
+                style="@style/FJ_H4_Dark"
+                android:text="@string/bike_privacy_note_2" />
 
             <Button
                 android:id="@+id/btn_save_changes"

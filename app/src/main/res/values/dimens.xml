@@ -16,6 +16,13 @@
 
     <!--paddings & margins-->
     <dimen name="fj_padding_huge">20dp</dimen>
+    <dimen name="fj_padding_medium">14dp</dimen>
+    <dimen name="fj_padding_small">10dp</dimen>
+
+    <dimen name="fj_form_padding_left">20dp</dimen>
+    <dimen name="fj_form_padding_right">20dp</dimen>
+    <dimen name="fj_form_padding_top">20dp</dimen>
+    <dimen name="fj_form_padding_bottom">20dp</dimen>
 
 
 </resources>

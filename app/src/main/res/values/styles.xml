@@ -29,6 +29,8 @@
     </style>
 
     <style name="FJ_TextView_Dark">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/bitter</item>
         <item name="android:textColor">@color/toggleActivated</item>
         <item name="android:textSize">@dimen/fj_text_size_p</item>
@@ -45,5 +47,17 @@
         <item name="android:paddingBottom">10dp</item>
         <item name="android:textSize">@dimen/fj_text_size_h2</item>
     </style>
+
+    <!-- FORM STYLES -->
+    <style name="FJ_Form_Holder" parent="FJ_TextView_Dark">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">@dimen/fj_form_padding_right</item>
+        <item name="android:paddingRight">@dimen/fj_form_padding_right</item>
+        <item name="android:paddingTop">@dimen/fj_form_padding_top</item>
+        <item name="android:paddingBottom">@dimen/fj_form_padding_top</item>
+    </style>
+
 
 </resources>

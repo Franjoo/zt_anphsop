@@ -39,6 +39,7 @@
         <activity
             android:name=".usecases.bikedetail.EditBikeActivity"
             android:label="@string/screen_title_bike_edit"
+            android:windowSoftInputMode="stateHidden"
             android:parentActivityName=".usecases.bikedetail.BikeDetailActivity" />
 
     </application>
