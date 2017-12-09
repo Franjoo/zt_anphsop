@@ -28,4 +28,22 @@
         <item name="android:background">@color/divider</item>
     </style>
 
+    <style name="FJ_TextView_Dark">
+        <item name="android:fontFamily">@font/bitter</item>
+        <item name="android:textColor">@color/toggleActivated</item>
+        <item name="android:textSize">@dimen/fj_text_size_p</item>
+    </style>
+
+    <style name="FJ_H4_Dark" parent="FJ_TextView_Dark">
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:textSize">@dimen/fj_text_size_h4</item>
+    </style>
+
+    <style name="FJ_H2_Dark" parent="FJ_TextView_Dark">
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textSize">@dimen/fj_text_size_h2</item>
+    </style>
+
 </resources>

@@ -17,4 +17,11 @@
     <string name="theft_message">Diebstahl Nachricht</string>
     <string name="sightings_info">Finde Dein Fahrrad!</string>
     <string name="chats_sub">Chats zu diesem Fahrrad</string>
+    <string name="hint_bike_name">Spitzname</string>
+    <string name="hint_bike_type">Fahrradtyp</string>
+    <string name="hint_bike_manufacturer">Hersteller</string>
+    <string name="hint_bike_primary_color">Hauptfarbe</string>
+    <string name="hint_bike_secondary_color">Nebenfarbe</string>
+    <string name="hint_bike_identification_number">Rahmennummer</string>
+    <string name="bike_privacy_note_1">Diese Informationen werden auf unserer Website und der App veröffentlicht, we Du Dein Fahrrad gestohlen meldest.</string>
 </resources>

@@ -1,5 +1,8 @@
 - coloured vector drawables, do not use tinting
 
+#### 0.2
+
+- forms and validation 
 
 ### 0.1
 

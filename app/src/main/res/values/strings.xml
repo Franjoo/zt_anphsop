@@ -11,18 +11,39 @@
 
     <string name="sightings">Sightings</string>
     <string name="sightings_info">Find your bike!</string>
-
     <string name="theft_message">Theft Message</string>
     <string name="theft_message_info">Edit or delete</string>
-
     <string name="chats">Chats</string>
     <string name="chats_sub">Chats to this bike</string>
 
-    <!-- debug & dummy strings -->
+    <string name="bike_characteristics">Characteristics</string>
+    <string name="bike_privacy_note_1">These information will not be published but could be important in case of theft.</string>
+    <string name="bike_privacy_note_2">These information will be published in the App and our Website.</string>
+    <string name="bike_more_details">More Details</string>
+    <string name="bike_private_notes">Private Notes</string>
+
+
+    <!-- debug and dummy strings -->
     <string name="not_implemented_yet">[ not implemented yet ]</string>
     <string name="dummy_extra_string">dummy message</string>
     <string name="screen_title_chats">Chats</string>
     <string name="screen_title_sightings">Sightings</string>
     <string name="screen_title_bike_edit">Edit</string>
+
+    <!-- form and validation strings -->
+    <string name="hint_bike_name">bike name</string>
+    <string name="hint_bike_type">bike Type</string>
+    <string name="hint_bike_manufacturer">manufacturer</string>
+    <string name="hint_bike_primary_color">primary color</string>
+    <string name="hint_bike_secondary_color">secondary color</string>
+    <string name="hint_bike_identification_number">identification number</string>
+
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="btn_sign_up">Sign Up</string>
+    <string name="err_msg_name">Enter your full name</string>
+    <string name="err_msg_email">Enter valid email address</string>
+    <string name="err_msg_password">Enter the password</string>
+    <string name="btn_save_changes">Save Changes</string>
 
 </resources>
