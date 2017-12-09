@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="choices_bike_color">
-        <item>@string/hint_bike_primary_color</item>
+        <item>@string/hint_not_set</item>
         <item>@string/color_blue</item>
         <item>@string/color_brown</item>
         <item>@string/color_yellow</item>

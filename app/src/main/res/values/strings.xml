@@ -46,6 +46,7 @@
 
 
     <!-- form and validation strings -->
+    <string name="hint_not_set">not set</string>
     <string name="hint_bike_name">bike name</string>
     <string name="hint_bike_type">bike Type</string>
     <string name="hint_bike_manufacturer">manufacturer</string>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#dedede"
@@ -72,45 +73,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:baselineAligned="false"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/fj_padding_small"
+                android:paddingTop="@dimen/fj_padding_small">
 
                 <!-- primary color -->
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_bike_secondary_color"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:id="@+id/input_layout_bike_primary_color"
+                    style="@style/FJ_Horizontal_Split">
 
-                    <!--<EditText-->
-                        <!--android:id="@+id/input_bike_secondary_color"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:hint="@string/hint_bike_secondary_color"-->
-                        <!--android:singleLine="true" />-->
+                    <TextView
+                        style="@style/FJ_Hint_Top_TV"
+                        android:text="@string/hint_bike_primary_color" />
 
                     <Spinner
-                        android:id="@+id/input_picker_primary_color2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="1"/>
+                        android:id="@+id/input_picker_primary_color"
+                        style="@style/FJ_Form_Spinner_Half"
+                        android:entries="@array/choices_bike_color" />
 
                 </android.support.design.widget.TextInputLayout>
 
                 <!-- secondary color -->
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_bike_primary_color"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:id="@+id/input_layout_bike_secondary_color"
+                    style="@style/FJ_Horizontal_Split">
 
-                    <EditText
-                        android:id="@+id/input_bike_primary_color"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/hint_bike_primary_color"
-                        android:singleLine="true" />
+                    <TextView
+                        style="@style/FJ_Hint_Top_TV"
+                        android:text="@string/hint_bike_secondary_color" />
+
+                    <Spinner
+                        android:id="@+id/input_picker_secondary_color"
+                        style="@style/FJ_Form_Spinner_Half"
+                        android:entries="@array/choices_bike_color" />
+
                 </android.support.design.widget.TextInputLayout>
+
 
             </LinearLayout>
 
@@ -120,31 +118,7 @@
                 android:text="Polizeilich registriert?" />
 
             <!-- bike color section picker -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                android:weightSum="2">
 
-                <!-- primary color -->
-                <Spinner
-                    android:id="@+id/input_picker_primary_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:entries="@array/choices_bike_color" />
-
-                <!-- secondary color -->
-                <Spinner
-                    android:id="@+id/input_picker_secondary_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:entries="@array/choices_bike_color" />
-            </LinearLayout>
 
             <!-- bike manufacturer -->
             <android.support.design.widget.TextInputLayout
