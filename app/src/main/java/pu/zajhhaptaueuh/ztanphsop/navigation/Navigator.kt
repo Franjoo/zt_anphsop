@@ -25,22 +25,20 @@ class Navigator {
     companion object {
 
         private val TAG = Navigator::class.simpleName
-        private val OP_GOTO = "Start Activity: "
-
+        private val OP_ACTIVITY = "Start Activity: "
 
         fun gotoEditBikeActivity(context: Context) {
             val intent = Intent(context, EditBikeActivity::class.java)
             context.startActivity(intent)
 
-            Log.i(TAG, OP_GOTO + EditBikeActivity::class.simpleName)
+            Log.i(TAG, OP_ACTIVITY + EditBikeActivity::class.simpleName)
         }
 
         fun gotoSightingsActivity(context: Context) {
             val intent = Intent(context, ChaseMapActivity::class.java)
-//            intent.putExtra(NotImplementedActivity.EXTRA_IDENTIFIER, identifier)
             context.startActivity(intent)
 
-            Log.i(TAG, OP_GOTO + ChaseMapActivity::class.simpleName)
+            Log.i(TAG, OP_ACTIVITY + ChaseMapActivity::class.simpleName)
         }
 
 
@@ -49,15 +47,16 @@ class Navigator {
             intent.putExtra(AlarmClock.EXTRA_MESSAGE, context.getString(R.string.dummy_extra_string))
             context.startActivity(intent)
 
-            Log.i(TAG, OP_GOTO + ChatsActivity::class.simpleName)
+            Log.i(TAG, OP_ACTIVITY + ChatsActivity::class.simpleName)
         }
+
 
         fun gotoNotImplementedActivity(context: Context, identifier: String) {
             val intent = Intent(context, NotImplementedActivity::class.java)
             intent.putExtra(NotImplementedActivity.EXTRA_IDENTIFIER, identifier)
             context.startActivity(intent)
 
-            Log.i(TAG, OP_GOTO + NotImplementedActivity::class.simpleName + "/  $identifier")
+            Log.i(TAG, OP_ACTIVITY + NotImplementedActivity::class.simpleName + "/  $identifier")
         }
 
     }
