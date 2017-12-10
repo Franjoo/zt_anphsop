@@ -14,7 +14,7 @@ import pu.zajhhaptaueuh.ztanphsop.utils.Utils
 open class BaseActivity : AppCompatActivity() {
 
     protected open fun setupActionBar(title: String?) {
-        val toolbar: Toolbar = findViewById(R.id.fj_toolbar)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
         toolbar.setTitleTextAppearance(this, R.style.ToolbarTextAppearance)
         toolbar.title = title
         setSupportActionBar(toolbar)

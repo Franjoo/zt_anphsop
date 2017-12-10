@@ -1,6 +1,8 @@
 package pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.ProgressBar
 import pu.zajhhaptaueuh.ztanphsop.R
 import pu.zajhhaptaueuh.ztanphsop.usecases.BaseActivity
 
@@ -16,6 +18,17 @@ class EditBikeActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bike_edit_bike)
         setupActionBar(null)
+        setupClickListener()
+    }
+
+    private fun setupClickListener() {
+        val saveButton = findViewById<Button>(R.id.btn_save_changes)
+        saveButton.setOnClickListener { saveChanges() }
+    }
+
+    private fun saveChanges() {
+        val progressbar = findViewById<ProgressBar>(R.id.toolbar_progress_bar)
+
     }
 
 
