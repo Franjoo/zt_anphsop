@@ -26,7 +26,7 @@ class RegisterInsectActivity : AppCompatActivity() {
     }
 
     private fun setupActionBar() {
-        val toolbar: Toolbar = findViewById(R.id.my_toolbar)
+        val toolbar: Toolbar = findViewById(R.id.fj_toolbar)
         toolbar.setTitleTextAppearance(this, R.style.ToolbarTextAppearance)
         setSupportActionBar(toolbar)
 

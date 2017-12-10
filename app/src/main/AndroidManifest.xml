@@ -21,6 +21,8 @@
             </intent-filter>
         </activity>
 
+
+        <!-- ### Bike Detail ### -->
         <activity
             android:name=".usecases.BaseActivity"
             android:parentActivityName=".usecases.bikedetail.BikeDetailActivity" />

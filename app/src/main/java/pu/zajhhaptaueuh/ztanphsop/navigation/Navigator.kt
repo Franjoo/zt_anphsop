@@ -44,7 +44,6 @@ class Navigator {
 
         fun gotoChatsActivity(context: Context) {
             val intent = Intent(context, ChatsActivity::class.java)
-            intent.putExtra(AlarmClock.EXTRA_MESSAGE, context.getString(R.string.dummy_extra_string))
             context.startActivity(intent)
 
             Log.i(TAG, OP_ACTIVITY + ChatsActivity::class.simpleName)

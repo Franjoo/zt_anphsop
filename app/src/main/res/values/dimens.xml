@@ -26,7 +26,7 @@
     <dimen name="fj_form_padding_bottom">20dp</dimen>
 
     <dimen name="fj_padding_edit_text">12dp</dimen>
-
+    <dimen name="fj_progressbar_height">2dp</dimen>
 
 
 </resources>

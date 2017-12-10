@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundLight"
     android:orientation="vertical">
 
     <include
-        android:id="@+id/my_toolbar"
+        android:id="@+id/fj_toolbar"
         layout="@layout/toolbar" />
+
+    <include
+        android:id="@+id/fj_toolbar_progressbar"
+        layout="@layout/progressbar" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -88,8 +91,8 @@
                     <Spinner
                         android:id="@+id/input_picker_primary_color"
                         style="@style/FJ_Form_Spinner_Half"
-                        android:padding="0dp"
-                        android:entries="@array/choices_bike_color" />
+                        android:entries="@array/choices_bike_color"
+                        android:padding="0dp" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -106,8 +109,8 @@
                         android:id="@+id/input_picker_secondary_color"
                         style="@style/FJ_Form_Spinner_Half"
                         android:dropDownHeight="20dp"
-                        android:spinnerMode="dropdown"
-                        android:entries="@array/choices_bike_color" />
+                        android:entries="@array/choices_bike_color"
+                        android:spinnerMode="dropdown" />
 
                 </android.support.design.widget.TextInputLayout>
 
