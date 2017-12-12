@@ -1,8 +1,11 @@
 package pu.zajhhaptaueuh.ztanphsop.usecases
 
+import android.app.Activity
+import android.support.annotation.IdRes
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.View
 import pu.zajhhaptaueuh.ztanphsop.R
 import pu.zajhhaptaueuh.ztanphsop.utils.Utils
 
@@ -26,5 +29,23 @@ open class BaseActivity : AppCompatActivity() {
                 resources.getColor(R.color.toggleActivated) )
         supportActionBar?.setHomeAsUpIndicator(homeIndicatorDrawable)
     }
+
+
+    /**
+     * @see
+     * https://medium.com/@quiro91/improving-findviewbyid-with-kotlin-4cf2f8f779bb
+     */
+    protected fun <T : View> Activity.bind(@IdRes idRes: Int): Lazy<T> {
+        @Suppress("UNCHECKED_CAST")
+        return unsafeLazy { findViewById<T>(idRes) }
+    }
+
+    protected fun <T : View> View.bind(@IdRes idRes: Int): Lazy<T> {
+        @Suppress("UNCHECKED_CAST")
+        return unsafeLazy { findViewById<T>(idRes) }
+    }
+
+    private fun <T> unsafeLazy(initializer: () -> T) = lazy(LazyThreadSafetyMode.NONE, initializer)
+
 }
 

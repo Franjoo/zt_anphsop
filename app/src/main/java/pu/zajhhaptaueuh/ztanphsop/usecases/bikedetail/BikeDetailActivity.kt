@@ -24,10 +24,7 @@ import pu.zajhhaptaueuh.ztanphsop.utils.Utils
 
 class BikeDetailActivity : BaseActivity() {
 
-    //    private val TAG: String = BikeDetailActivity::class.simpleName as String;
-    companion object {
-        const val TAG = "BikeDetailActivity"
-    }
+    private val tag: String = BikeDetailActivity::class.simpleName as String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +32,7 @@ class BikeDetailActivity : BaseActivity() {
         setMenuValues()
         setupMenuClickListener()
 
-        Log.v(TAG, "created")
+        Log.v(tag, "created")
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

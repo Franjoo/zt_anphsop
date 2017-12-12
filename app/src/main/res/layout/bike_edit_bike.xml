@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundLight"
@@ -118,6 +119,7 @@
             </LinearLayout>
 
             <CheckBox
+                android:id="@+id/input_checkbox_registered"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Polizeilich registriert?" />
@@ -160,9 +162,11 @@
                 android:text="@string/btn_save_changes"
                 android:textColor="@android:color/white" />
 
+            <View style="@style/FJ_Toolbar_Spacer"/>
+
         </LinearLayout>
 
     </ScrollView>
 
+</android.support.design.widget.CoordinatorLayout>
 
-</FrameLayout>

@@ -9,7 +9,7 @@ package pu.zajhhaptaueuh.ztanphsop
 class Constants {
 
     companion object {
-        val SECRET = "bla"
+        val Undefined = -333
     }
 
 }
