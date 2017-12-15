@@ -9,7 +9,10 @@ package pu.zajhhaptaueuh.ztanphsop
 class Constants {
 
     companion object {
+
         val Matcher_No_Special_Characters = Regex("[a-zA-Z0-9]+")
+        val Matcher_Less_Than_4 = Regex("^.{1,3}")
+        val Matcher_More_Than_12 = Regex("^.{11,}$")
 
         val Undefined = -333
     }
