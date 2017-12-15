@@ -19,10 +19,10 @@
 
     <style name="EditTextHint" parent="TextAppearance.AppCompat">
         <item name="colorAccent">@android:color/white</item>
-        <item name="android:textColorHint">@color/fontAccentDark</item>
-        <item name="colorControlNormal">@color/fontAccentDark</item>
-        <item name="colorControlActivated">@color/fontAccentDark</item>
-        <item name="colorControlHighlight">@color/fontAccentDark</item>
+        <!--<item name="android:textColorHint">@color/fontAccentDark</item>-->
+        <!--<item name="colorControlNormal">@color/fontAccentDark</item>-->
+        <!--<item name="colorControlActivated">@color/fontAccentDark</item>-->
+        <!--<item name="colorControlHighlight">@color/fontAccentDark</item>-->
     </style>
 
     <style name="FJ_Toolbar_Spacer">
@@ -91,7 +91,7 @@
         <item name="android:paddingTop">@dimen/fj_padding_edit_text</item>
         <item name="android:paddingBottom">@dimen/fj_padding_edit_text</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textColorHint">@color/fontAccentDark</item>
+        <!--<item name="android:textColorHint">@color/fontAccentDark</item>-->
     </style>
 
     <style name="FJ_Form_Spinner_Half">

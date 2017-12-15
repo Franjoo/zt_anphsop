@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import pu.zajhhaptaueuh.ztanphsop.R
+import pu.zajhhaptaueuh.ztanphsop.dialogs.DialogProvider
 import pu.zajhhaptaueuh.ztanphsop.navigation.Navigator
 import pu.zajhhaptaueuh.ztanphsop.usecases.BaseActivity
 import pu.zajhhaptaueuh.ztanphsop.utils.Utils
@@ -24,7 +25,7 @@ import pu.zajhhaptaueuh.ztanphsop.utils.Utils
 
 class BikeDetailActivity : BaseActivity() {
 
-    private val tag: String = BikeDetailActivity::class.simpleName as String
+    private val tag = this::class.simpleName as String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,12 +40,8 @@ class BikeDetailActivity : BaseActivity() {
         when (item.itemId) {
             R.id.action_camera -> Navigator.gotoNotImplementedActivity(this, "edit images")
             R.id.action_edit -> Navigator.gotoEditBikeActivity(this)
-            R.id.action_delete -> Navigator.gotoNotImplementedActivity(this, "delete bike")
-            else -> {
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item)
-            }
+            R.id.action_delete -> delete()
+            else -> super.onOptionsItemSelected(item)
         }
 
         return true
@@ -80,15 +77,14 @@ class BikeDetailActivity : BaseActivity() {
     private fun setMenuItemValues(holder: ViewGroup, title: String, subTitle: String) {
         holder.findViewById<TextView>(R.id.head).text = title
         holder.findViewById<TextView>(R.id.sub).text = subTitle
-        // TODO click listener
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.ab_bike_detail, menu)
+
         for (i in 0 until menu.size()) {
-            val drawable = menu.getItem(i).icon
-            if (drawable != null) {
-                Utils.tintDrawable(drawable, resources.getColor(R.color.toggleActivated))
+            menu.getItem(i).icon?.let {
+                Utils.tintDrawable(it, resources.getColor(R.color.toggleActivated))
             }
         }
         return true
@@ -123,6 +119,13 @@ class BikeDetailActivity : BaseActivity() {
         val tv: TextView = findViewById<LinearLayout>(parentId).getChildAt(1) as TextView
         tv.text = resources.getString(stringID)
         icon.setImageResource(iconId)
+    }
+
+    private fun delete() {
+        DialogProvider.createDeleteBikeDialog(this,
+                { Log.d(tag, "bike was deleted") }, // on yes
+                { Log.d(tag, "dialog canceled") } // on cancel
+        )
     }
 
 

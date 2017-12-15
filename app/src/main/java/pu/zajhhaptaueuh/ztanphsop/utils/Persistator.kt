@@ -37,6 +37,17 @@ class Persistator {
                 prefs.getBoolean("bike_registered", false),
                 prefs.getInt("bike_size", 0))
 
+
+//        return BikeData(with(prefs){
+//            getLong("bike_id", 0)
+//            getString("bike_name", "")
+//            getString("bike_name", "")
+//            getString("bike_manufacturer", "")
+//            getInt("bike_primary_color", 0)
+//            getInt("bike_secondary_color", 0)
+//            getBoolean("bike_registered", false)
+//            getInt("bike_size", 0))
+//        })
     }
 
 }

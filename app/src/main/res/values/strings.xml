@@ -48,20 +48,26 @@
     <!-- form and validation strings -->
     <string name="hint_not_set">not set</string>
     <string name="hint_bike_name">bike name</string>
-    <string name="hint_bike_type">bike Type</string>
+    <string name="hint_bike_type">bike type</string>
     <string name="hint_bike_manufacturer">manufacturer</string>
     <string name="hint_bike_primary_color">primary color</string>
     <string name="hint_bike_secondary_color">secondary color</string>
     <string name="hint_bike_identification_number">identification number</string>
     <string name="hint_bike_size">bike size</string>
 
+    <string name="err_too_short">too short</string>
+    <string name="err_too_long">too long</string>
+    <string name="err_special_characters">no special characters allowed</string>
 
+    <string name="btn_save_changes">Save Changes</string>
+    <string name="delete">delete</string>
+    <string name="cancel">cancel</string>
+    <string name="really_delete_bike">Really delete this bike?</string>
+    <string name="delete_bike">Delete Bike</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-    <string name="btn_sign_up">Sign Up</string>
-    <string name="err_msg_name">Enter your full name</string>
-    <string name="err_msg_email">Enter valid email address</string>
-    <string name="err_msg_password">Enter the password</string>
-    <string name="btn_save_changes">Save Changes</string>
+    <string name="save_changes_text">Änderungen speichern</string>
+    <string name="yes">yes</string>
+    <string name="save_changes_title">Save changes</string>
 
 </resources>

@@ -1,15 +1,7 @@
 package pu.zajhhaptaueuh.ztanphsop.utils
 
-import android.app.Activity
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
-import android.support.annotation.IdRes
-import android.view.View
-import android.widget.ProgressBar
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
-import java.util.*
-import kotlin.concurrent.scheduleAtFixedRate
 
 
 /* Copyright (Constants) million hunters GmbH - All Rights Reserved
@@ -26,38 +18,34 @@ class Utils {
             drawable.mutate().setColorFilter(color, PorterDuff.Mode.SRC_ATOP)
             return drawable
         }
-
-        fun startProgressBar(p: ProgressBar) {
-
-            doAsync {
-                val timer = Timer("schedule", false)
-                var currentProgress = 0
-                val steps = 10
-                val max = 100
-                timer.scheduleAtFixedRate(0, 300) {
-                    println("hello world!")
-                    uiThread {
-                        currentProgress += steps
-                        p.progress = currentProgress
-
-                        if (currentProgress >= 0) {
-                            p.visibility = View.VISIBLE
-                        } else if (currentProgress >= 110) {
-                            p.visibility = View.GONE
-                            p.progress = 0
-                            currentProgress = 0
-                            this.cancel()
-                        }
-                    }
-
-
-                }
-            }
-        }
-
-        fun checkBikeNameValid(name: String?): String? {
-            return null
-        }
+//
+//        fun startProgressBar(p: ProgressBar) {
+//
+//            doAsync {
+//                val timer = Timer("schedule", false)
+//                var currentProgress = 0
+//                val steps = 10
+//                val max = 100
+//                timer.scheduleAtFixedRate(0, 300) {
+//                    println("hello world!")
+//                    uiThread {
+//                        currentProgress += steps
+//                        p.progress = currentProgress
+//
+//                        if (currentProgress >= 0) {
+//                            p.visibility = View.VISIBLE
+//                        } else if (currentProgress >= 110) {
+//                            p.visibility = View.GONE
+//                            p.progress = 0
+//                            currentProgress = 0
+//                            this.cancel()
+//                        }
+//                    }
+//
+//
+//                }
+//            }
+//        }
 
 
     }

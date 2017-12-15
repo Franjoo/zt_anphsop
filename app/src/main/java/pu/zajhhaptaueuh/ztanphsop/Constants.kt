@@ -9,6 +9,8 @@ package pu.zajhhaptaueuh.ztanphsop
 class Constants {
 
     companion object {
+        val Matcher_No_Special_Characters = Regex("[a-zA-Z0-9]+")
+
         val Undefined = -333
     }
 

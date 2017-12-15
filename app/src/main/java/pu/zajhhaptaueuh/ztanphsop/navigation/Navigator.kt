@@ -29,6 +29,7 @@ class Navigator {
 
         fun gotoEditBikeActivity(context: Context) {
             val intent = Intent(context, EditBikeActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             context.startActivity(intent)
 
             Log.i(TAG, OP_ACTIVITY + EditBikeActivity::class.simpleName)
