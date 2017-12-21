@@ -1,6 +1,7 @@
 package pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail
 
 import android.os.Bundle
+import android.view.Window
 import pu.zajhhaptaueuh.ztanphsop.R
 import pu.zajhhaptaueuh.ztanphsop.usecases.BaseActivity
 
@@ -11,9 +12,14 @@ import pu.zajhhaptaueuh.ztanphsop.usecases.BaseActivity
  */
 
 class ChatsActivity : BaseActivity() {
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.bike_chats)
+
+
     }
 
     override fun onResume() {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:translationZ="10dp"
-    android:layout_height="?attr/actionBarSize">
+    android:layout_height="?attr/actionBarSize"
+    android:translationZ="10dp">
 
     <ProgressBar
         android:id="@+id/progressbar"
@@ -13,6 +13,7 @@
         android:indeterminateTint="#795548"
         android:indeterminateTintMode="src_in"
         android:max="100"
-        android:progress="45" />
+        android:progress="0"
+        android:visibility="gone" />
 
 </RelativeLayout>

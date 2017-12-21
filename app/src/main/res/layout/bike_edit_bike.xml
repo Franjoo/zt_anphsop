@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundLight"
-    android:orientation="vertical">
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:transitionName="">
 
     <include
         android:id="@+id/toolbar"
@@ -159,11 +162,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:background="@color/fj_green"
                 android:clickable="true"
                 android:focusable="true"
                 android:text="@string/btn_save_changes"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:theme="@style/FJ_Action_Button" />
 
             <View style="@style/FJ_Toolbar_Spacer" />
 

@@ -13,14 +13,14 @@ import java.util.*
  */
 data class BikeData(
 
-        val id: Long,
+        val id: String,
         val name: String,
         val type: String,
         val manufacturer: String,
-        val primary_color: Int,
-        val secondary_color: Int,
+        val primary_color: String,
+        val secondary_color: String,
         val registered: Boolean,
-        val size: Int
+        val size: String
 
 )
 

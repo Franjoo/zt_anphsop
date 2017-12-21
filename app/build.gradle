@@ -36,7 +36,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     // compile-time dependencies
-    compile "org.jetbrains.kotlin:kotlin-reflect:1.2.10"
+//    compile "org.jetbrains.kotlin:kotlin-reflect:1.2.10"
     compile 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.20'
     compile 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.20'
 }

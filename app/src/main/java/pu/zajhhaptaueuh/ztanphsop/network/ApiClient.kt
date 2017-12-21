@@ -1,7 +1,5 @@
 package pu.zajhhaptaueuh.ztanphsop.network
 
-import kotlinx.coroutines.experimental.Deferred
-import kotlinx.coroutines.experimental.async
 import kotlinx.coroutines.experimental.delay
 import pu.zajhhaptaueuh.ztanphsop.models.BikeData
 
@@ -12,28 +10,23 @@ import pu.zajhhaptaueuh.ztanphsop.models.BikeData
  */
 class ApiClient {
 
-
-
-    suspend fun getBikeById(userId: Int): BikeData {
+    /**
+     * simulates a
+     */
+    suspend fun requestBikeData(): BikeData {
         delay(1_000)
 
-        val bike = BikeData(
-                0,
+        val bikeIdFromUser = "dummyBikeId"
+        return BikeData(
+                bikeIdFromUser,
                 "dummy",
                 "type",
                 "m",
-                222222,
-                444444,
+                "222222",
+                "444444",
                 false,
-                28
+                "28"
         )
-
-
-
-        println("will return $bike")
-
-        return bike
-
     }
 
 }

@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/backgroundLight"
+    android:orientation="vertical"
+    android:transitionName="">
 
     <include layout="@layout/toolbar" android:id="@+id/toolbar"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:scrollbars="none"
         android:layout_marginTop="?attr/actionBarSize">
 
         <LinearLayout
@@ -86,4 +90,4 @@
         </LinearLayout>
     </ScrollView>
 
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>

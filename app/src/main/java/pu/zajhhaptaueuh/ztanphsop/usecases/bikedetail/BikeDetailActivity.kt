@@ -1,5 +1,6 @@
 package pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.res.ResourcesCompat
 import android.util.Log
@@ -10,11 +11,21 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import kotlinx.coroutines.experimental.CommonPool
+import kotlinx.coroutines.experimental.CoroutineExceptionHandler
+import kotlinx.coroutines.experimental.Deferred
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
+import pu.zajhhaptaueuh.ztanphsop.Bikes
+import pu.zajhhaptaueuh.ztanphsop.Constants
 import pu.zajhhaptaueuh.ztanphsop.R
 import pu.zajhhaptaueuh.ztanphsop.dialogs.DialogProvider
+import pu.zajhhaptaueuh.ztanphsop.models.BikeData
 import pu.zajhhaptaueuh.ztanphsop.navigation.Navigator
+import pu.zajhhaptaueuh.ztanphsop.network.ApiClient
 import pu.zajhhaptaueuh.ztanphsop.usecases.BaseActivity
 import pu.zajhhaptaueuh.ztanphsop.utils.Utils
+import kotlin.coroutines.experimental.CoroutineContext
 
 
 /* Copyright (Constants) million hunters GmbH - All Rights Reserved
@@ -25,16 +36,38 @@ import pu.zajhhaptaueuh.ztanphsop.utils.Utils
 
 class BikeDetailActivity : BaseActivity() {
 
-    private val tag = this::class.simpleName as String
+    //    private val tag = this::class.simpleName as String
+    val tag: String = EditBikeActivity@ this.javaClass.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bike_detail)
         setMenuValues()
         setupMenuClickListener()
-
-        Log.v(tag, "created")
     }
+
+    override fun onStart() {
+        super.onStart()
+        restoreBikeData()
+    }
+
+    private fun restoreBikeData() {
+        val exceptionHandler: CoroutineContext = CoroutineExceptionHandler { _, throwable -> throwable.printStackTrace() }
+        async(UI + exceptionHandler) {
+            val deferredBikeData: Deferred<BikeData> = async(CommonPool) { ApiClient().requestBikeData() }
+            val bike = deferredBikeData.await()
+            Bikes.put(bike.id, bike)
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        when (requestCode) {
+            Constants.RESULT_SAVED_CHANGES ->
+                Utils.snack(this, getString(R.string.save_changes_title))
+        }
+    }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

@@ -1,14 +1,19 @@
 package pu.zajhhaptaueuh.ztanphsop.navigation
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.provider.AlarmClock
+import android.support.design.widget.Snackbar
 import android.util.Log
+import android.view.View
+import pu.zajhhaptaueuh.ztanphsop.Constants
 import pu.zajhhaptaueuh.ztanphsop.R
 import pu.zajhhaptaueuh.ztanphsop.usecases.NotImplementedActivity
+import pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.BikeDetailActivity
 import pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.ChaseMapActivity
 import pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.ChatsActivity
 import pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.EditBikeActivity
+
 
 /* Copyright (Constants) million hunters GmbH - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
@@ -17,37 +22,61 @@ import pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.EditBikeActivity
  */
 
 /**
- * The Navigator provides methods for setting up intent extras and starting Activity transitions.
+ * The Navigator provides methods for setting up intent extras and starting Activities with transitions.
  * It is also responsible for handling the Activity Backstack.
  */
 class Navigator {
 
+    @Suppress("JAVA_CLASS_ON_COMPANION")
     companion object {
 
-        private val TAG = Navigator::class.simpleName
+        val TAG = Navigator@ this.javaClass.simpleName
         private val OP_ACTIVITY = "Start Activity: "
 
-        fun gotoEditBikeActivity(context: Context) {
+        fun gotoBikeDetailActivity(context: Activity, savedChanges:Boolean) {
+            val intent = Intent(context, BikeDetailActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            intent.putExtra(Constants.EXTRA_SAVED_CHANGES, savedChanges)
+
+            context.setResult(Constants.RESULT_SAVED_CHANGES, intent)
+            context.startActivityForResult(intent, Constants.RESULT_SAVED_CHANGES)
+            context.overridePendingTransition(R.anim.left_in, R.anim.left_out)
+            context.finish()
+
+            logStart(BikeDetailActivity@ this.javaClass.simpleName)
+        }
+        fun gotoBikeDetailActivity(context: Activity) {
+            gotoBikeDetailActivity(context,false)
+//            val intent =  Intent(context, EditBikeActivity::class.java)
+//            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+
+        }
+
+        fun gotoEditBikeActivity(context: Activity) {
             val intent = Intent(context, EditBikeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             context.startActivity(intent)
+            context.overridePendingTransition(R.anim.right_in, R.anim.right_out)
 
-            Log.i(TAG, OP_ACTIVITY + EditBikeActivity::class.simpleName)
+            logStart(EditBikeActivity@ this.javaClass.simpleName)
         }
 
-        fun gotoSightingsActivity(context: Context) {
+        fun gotoSightingsActivity(context: Activity) {
             val intent = Intent(context, ChaseMapActivity::class.java)
             context.startActivity(intent)
-
-            Log.i(TAG, OP_ACTIVITY + ChaseMapActivity::class.simpleName)
+            context.overridePendingTransition(R.anim.right_in, R.anim.right_out)
+            logStart(ChaseMapActivity@ this.javaClass.simpleName)
         }
 
-
-        fun gotoChatsActivity(context: Context) {
+        fun gotoChatsActivity(context: Activity) {
             val intent = Intent(context, ChatsActivity::class.java)
             context.startActivity(intent)
+            context.overridePendingTransition(R.anim.right_in, R.anim.right_out)
 
-            Log.i(TAG, OP_ACTIVITY + ChatsActivity::class.simpleName)
+//            ActivityOptions.makeSceneTransitionAnimation(context, Pair<View,String>(context.findViewById(android.R.id.content),).toBundle();
+
+            logStart(ChatsActivity@ this.javaClass.simpleName)
         }
 
 
@@ -55,8 +84,11 @@ class Navigator {
             val intent = Intent(context, NotImplementedActivity::class.java)
             intent.putExtra(NotImplementedActivity.EXTRA_IDENTIFIER, identifier)
             context.startActivity(intent)
+            logStart(NotImplementedActivity@ this.javaClass.simpleName)
+        }
 
-            Log.i(TAG, OP_ACTIVITY + NotImplementedActivity::class.simpleName + "/  $identifier")
+        private fun logStart(className: String) {
+            Log.d(TAG, OP_ACTIVITY + className)
         }
 
     }

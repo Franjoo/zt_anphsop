@@ -2,6 +2,7 @@ package pu.zajhhaptaueuh.ztanphsop.dialogs
 
 import android.content.Context
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import pu.zajhhaptaueuh.ztanphsop.R
 
 /* Copyright (C) million hunters GmbH - All Rights Reserved
@@ -12,23 +13,37 @@ import pu.zajhhaptaueuh.ztanphsop.R
 class DialogProvider {
 
 
+    @Suppress("JAVA_CLASS_ON_COMPANION")
     companion object {
 
-        private val tag = this::class.simpleName as String
+        val tag = DialogProvider@ this.javaClass.simpleName
 
         private fun createDialog(context: Context,
                                  title: String, message: String,
                                  textPositive: String, textNegative: String,
-                                 onYes: () -> Unit, onNo: () -> Unit): AlertDialog {
+                                 onYes: (() -> Unit)?, onNo: (() -> Unit)?): AlertDialog {
 
             val builder = AlertDialog.Builder(context)
             with(builder) {
                 setTitle(title)
                 setMessage(message)
-                setPositiveButton(textPositive) { dialog, id -> onYes() }
-                setNegativeButton(textNegative) { dialog, id -> onNo() }
+
+                onYes?.let {
+                    setPositiveButton(textPositive) { dialog, id -> it() }
+                }
+
+                onNo?.let {
+                    setNegativeButton(textNegative) { dialog, id -> it() }
+                }
+
             }
-            return builder.create()
+
+            Log.i(tag, "create dialog with title: '$title'")
+
+            val dialog = builder.create()
+            dialog.window.attributes.windowAnimations = R.style.FJ_Dialog_Animation
+
+            return dialog
         }
 
 
@@ -41,7 +56,7 @@ class DialogProvider {
                     onYes, onNo)
         }
 
-        fun createSaveChangesDialog(context: Context, onYes: () -> Unit, onNo: () -> Unit): AlertDialog {
+        fun createSaveChangesDialog(context: Context, onYes: (() -> Unit)?, onNo: (() -> Unit)?): AlertDialog {
             return createDialog(context,
                     context.getString(R.string.save_changes_title),
                     context.getString(R.string.save_changes_text),

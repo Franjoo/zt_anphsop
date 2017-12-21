@@ -28,5 +28,7 @@
     <dimen name="fj_padding_edit_text">12dp</dimen>
     <dimen name="fj_progressbar_height">2dp</dimen>
 
+    <dimen name="transition_fade_duration">300</dimen>
+
 
 </resources>

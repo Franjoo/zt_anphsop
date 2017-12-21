@@ -1,7 +1,17 @@
 package pu.zajhhaptaueuh.ztanphsop.utils
 
+import android.animation.ObjectAnimator
+import android.app.Activity
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
+import android.support.design.widget.Snackbar
+import android.view.View
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.DecelerateInterpolator
+import android.widget.ProgressBar
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.delay
+import kotlinx.coroutines.experimental.launch
 
 
 /* Copyright (Constants) million hunters GmbH - All Rights Reserved
@@ -14,38 +24,39 @@ class Utils {
 
     companion object {
 
+        fun snack(view: View, text: String) {
+            Snackbar.make(view, text, Snackbar.LENGTH_SHORT).show()
+        }
+
+        fun snack(activity: Activity, text: String) {
+            snack(activity.findViewById<View>(android.R.id.content), text)
+        }
+
+        fun snackDelayed(activity: Activity, text: String) {
+            launch(UI) {
+                delay(500)
+                snack(activity, text)
+            }
+        }
+
         fun tintDrawable(drawable: Drawable, color: Int): Drawable {
             drawable.mutate().setColorFilter(color, PorterDuff.Mode.SRC_ATOP)
             return drawable
         }
-//
-//        fun startProgressBar(p: ProgressBar) {
-//
-//            doAsync {
-//                val timer = Timer("schedule", false)
-//                var currentProgress = 0
-//                val steps = 10
-//                val max = 100
-//                timer.scheduleAtFixedRate(0, 300) {
-//                    println("hello world!")
-//                    uiThread {
-//                        currentProgress += steps
-//                        p.progress = currentProgress
-//
-//                        if (currentProgress >= 0) {
-//                            p.visibility = View.VISIBLE
-//                        } else if (currentProgress >= 110) {
-//                            p.visibility = View.GONE
-//                            p.progress = 0
-//                            currentProgress = 0
-//                            this.cancel()
-//                        }
-//                    }
-//
-//
-//                }
-//            }
-//        }
+
+        fun startProgressBarOptimistic(progressBar: ProgressBar) {
+            launch(UI) {
+                progressBar.visibility = View.VISIBLE
+
+                val animation = ObjectAnimator.ofInt(progressBar, "progress", 0, 100)
+                animation.duration = 380
+                animation.interpolator = AccelerateInterpolator()
+                animation.start()
+
+                delay(420)
+                progressBar.visibility = View.GONE
+            }
+        }
 
 
     }

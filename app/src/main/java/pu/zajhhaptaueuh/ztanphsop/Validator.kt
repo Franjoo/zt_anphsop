@@ -11,6 +11,9 @@ import android.content.Context
 typealias C = Constants
 class Validator(private val context: Context) {
 
+    /**
+     * maps regex to error resource strings
+     */
     private val map: Map<Regex, String> = mapOf(
             C.Matcher_More_Than_12 to s(R.string.err_too_long),
             C.Matcher_Less_Than_4 to s(R.string.err_too_short),
@@ -32,10 +35,10 @@ class Validator(private val context: Context) {
 
     /* ####### utility functions ####### */
 
-    private fun checkValidArgument(s: String?, identifier: String) {
-        if (s == null) throw IllegalArgumentException("From argument $identifier was null")
-    }
-
+    /**
+     * checks regex
+     * @return an error matches otherwise null
+     */
     private fun checkValid(s: String, regex: Regex): String? {
         if (regex.matches(s)) {
             return map[regex]!!
@@ -43,6 +46,10 @@ class Validator(private val context: Context) {
         return null
     }
 
+    /**
+     * checks regex with negation option
+     * @return an error matches otherwise null
+     */
     private fun checkValid(s: String, regex: Regex, isNegated: Boolean): String? {
         if (!regex.matches(s) && isNegated || regex.matches(s) && !isNegated) {
             return map[regex]!!
@@ -50,6 +57,10 @@ class Validator(private val context: Context) {
         return null
     }
 
+    /**
+     * checks multiple regex
+     * @return an error matches otherwise null
+     */
     private fun checkMultiValid(s: String, vararg regex: Regex): String? {
         regex.forEach {
             if (it.matches(s)) {
@@ -60,6 +71,9 @@ class Validator(private val context: Context) {
         return null
     }
 
+    /**
+     * checks multiple regex with negation option
+     */
     private fun checkMultiValid(s: String, vararg regexList: Pair<Regex, Boolean>): String? {
         regexList.forEach {
             checkValid(s, it.first, it.second)?.let {
@@ -69,6 +83,9 @@ class Validator(private val context: Context) {
         return null
     }
 
+    /**
+     * Utility method to resolve a string resource
+     */
     private fun s(resId: Int): String {
         return context.getString(resId)
     }
