@@ -8,6 +8,8 @@ package pu.zajhhaptaueuh.ztanphsop
 
 class Constants {
 
+
+
     companion object {
 
         val BUNDLE_BIKE_ID = "fj.bundle.bike.id"
@@ -20,6 +22,14 @@ class Constants {
         val Matcher_More_Than_12 = Regex("^.{11,}$")
 
         val Undefined = -333
+
+        val DUMMY_BIKE_ID = "BikeId_abc123"
+
+
+       public enum class Bundles(val id:String){
+            BIKE_ID("fj.bundle.bike.id")
+        }
+
     }
 
 }

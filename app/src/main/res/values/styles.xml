@@ -113,7 +113,7 @@
 
     <style name="FJ_Dialog_Animation">
         <item name="android:windowEnterAnimation">@anim/fade_in_top</item>
-        <item name="android:windowExitAnimation">@anim/fade_out_bottom</item>
+        <item name="android:windowExitAnimation">@anim/alpha_out</item>
     </style>
 
     <style name="FJ_Action_Button" parent="ThemeOverlay.AppCompat">

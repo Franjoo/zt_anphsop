@@ -26,6 +26,9 @@ import pu.zajhhaptaueuh.ztanphsop.network.ApiClient
 import pu.zajhhaptaueuh.ztanphsop.usecases.BaseActivity
 import pu.zajhhaptaueuh.ztanphsop.utils.Utils
 import kotlin.coroutines.experimental.CoroutineContext
+import android.widget.Toast
+
+
 
 
 /* Copyright (Constants) million hunters GmbH - All Rights Reserved
@@ -38,17 +41,33 @@ class BikeDetailActivity : BaseActivity() {
 
     //    private val tag = this::class.simpleName as String
     val tag: String = EditBikeActivity@ this.javaClass.simpleName
+    var bikeId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bike_detail)
+
         setMenuValues()
         setupMenuClickListener()
+        setupViews()
+        setupActionBar(null)
+        setupMenu()
+
+        if (Bikes.isEmpty()) {
+            restoreBikeData()
+        } else{
+            bikeId = Constants.DUMMY_BIKE_ID // todo
+        }
+
+//        if (savedInstanceState != null) {
+//            bikeId = savedInstanceState.getString(Constants.BUNDLE_BIKE_ID)
+//        }
+
     }
 
-    override fun onStart() {
-        super.onStart()
-        restoreBikeData()
+    override fun onSaveInstanceState(outState: Bundle?) {
+        outState?.putString(Constants.BUNDLE_BIKE_ID,bikeId)
+        super.onSaveInstanceState(outState)
     }
 
     private fun restoreBikeData() {
@@ -57,6 +76,7 @@ class BikeDetailActivity : BaseActivity() {
             val deferredBikeData: Deferred<BikeData> = async(CommonPool) { ApiClient().requestBikeData() }
             val bike = deferredBikeData.await()
             Bikes.put(bike.id, bike)
+            bikeId = bike.id
         }
     }
 
@@ -64,7 +84,7 @@ class BikeDetailActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         when (requestCode) {
             Constants.RESULT_SAVED_CHANGES ->
-                Utils.snack(this, getString(R.string.save_changes_title))
+                Utils.snack(this, getString(R.string.snack_saved_changes))
         }
     }
 
@@ -72,7 +92,11 @@ class BikeDetailActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_camera -> Navigator.gotoNotImplementedActivity(this, "edit images")
-            R.id.action_edit -> Navigator.gotoEditBikeActivity(this)
+            R.id.action_edit -> {
+                val bundle = Bundle()
+                bundle.putString(Constants.BUNDLE_BIKE_ID, bikeId)
+                Navigator.withBundle(bundle).gotoEditBikeActivity(this)
+            }
             R.id.action_delete -> delete()
             else -> super.onOptionsItemSelected(item)
         }
@@ -114,21 +138,18 @@ class BikeDetailActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.ab_bike_detail, menu)
-
-        for (i in 0 until menu.size()) {
-            menu.getItem(i).icon?.let {
-                Utils.tintDrawable(it, resources.getColor(R.color.toggleActivated))
-            }
-        }
+        Utils.tintMenu(menu, resources.getColor(R.color.toggleActivated))
         return true
     }
 
     override fun onResume() {
         super.onResume()
 
-        setupViews()
-        setupActionBar(null)
-        setupMenu()
+        // handle bundle extras
+        val bikeDataUpdated = intent.getBooleanExtra(Constants.EXTRA_SAVED_CHANGES, false)
+        if (bikeDataUpdated) {
+            Utils.snackLongDelayed(this, getString(R.string.snack_saved_changes))
+        }
     }
 
     private fun setupMenu() {

@@ -2,27 +2,19 @@ package pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail
 
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.TextInputLayout
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.MenuItem
 import android.view.View
-import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import kotlinx.coroutines.experimental.Job
 import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
-import pu.zajhhaptaueuh.ztanphsop.Bikes
-import pu.zajhhaptaueuh.ztanphsop.Constants
-import pu.zajhhaptaueuh.ztanphsop.R
-import pu.zajhhaptaueuh.ztanphsop.Validator
+import pu.zajhhaptaueuh.ztanphsop.*
 import pu.zajhhaptaueuh.ztanphsop.dialogs.DialogProvider
 import pu.zajhhaptaueuh.ztanphsop.models.BikeData
 import pu.zajhhaptaueuh.ztanphsop.navigation.Navigator
 import pu.zajhhaptaueuh.ztanphsop.usecases.BaseActivity
 import pu.zajhhaptaueuh.ztanphsop.utils.Utils
+import pu.zajhhaptaueuh.ztanphsop.utils.InputWatcher
 
 
 /* Copyright (C) million hunters GmbH - All Rights Reserved
@@ -30,7 +22,9 @@ import pu.zajhhaptaueuh.ztanphsop.utils.Utils
  * Proprietary and confidential.
  * Created by Franz Benthin <franz.benthin@fahrradjaeger.de>, 12 2017
  */
-class EditBikeActivity : BaseActivity() {
+
+@Suppress("PrivatePropertyName")
+class EditBikeActivity : BaseActivity(), InputWatcher.WasTouchedObserver {
 
     //    public val tag = this::class.simpleName as String
     val tag = EditBikeActivity@ this.javaClass.simpleName
@@ -50,6 +44,10 @@ class EditBikeActivity : BaseActivity() {
     private val secondary_color: Int = Constants.Undefined
     private val size: Int = Constants.Undefined
 
+    override fun wasTouched(view: View) {
+        isDirty = true
+    }
+
     private var isDirty: Boolean = false
         private set(value) {
             field = value
@@ -59,22 +57,27 @@ class EditBikeActivity : BaseActivity() {
             btn_save.invalidate()
         }
 
-    private  var validator: Validator = Validator(this)
+    private lateinit var validator: Validator
+    private var bikeData: BikeData? = null
     private lateinit var bikeId: String
+    private lateinit var watcher: List<InputWatcher>
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
         setContentView(R.layout.bike_edit_bike)
 
         // restore saved bike data
-        savedInstanceState?.let {
-            bikeId = it.getString(Constants.BUNDLE_BIKE_ID)
-            restoreValues(bikeId)
+        intent.extras?.let {
+            if (it.containsKey(Constants.BUNDLE_BIKE_ID)) {
+                bikeId = it.getString(Constants.BUNDLE_BIKE_ID)
+                bikeData = Bikes[bikeId]!!
+                restoreValues(bikeData!!)
+            }
         }
 
         isDirty = false
-//        validator = Validator(this)
+        validator = Validator(this)
 
         setupActionBar(null)
         setupClickListener()
@@ -95,26 +98,43 @@ class EditBikeActivity : BaseActivity() {
     }
 
     private fun setupTextChangedListener() {
-        text_name.addTextChangedListener(object : TextWatcher {
-            val errorHolderLayout = findViewById<TextInputLayout>(R.id.input_layout_bike_name)
-            private var job: Job? = null
-            override fun afterTextChanged(e: Editable?) {
-                job = launch(UI) {
-                    delay(700)
-                    val text = e.toString()
-                    val error = validator.checkBikeNameValid(text)
-                    errorHolderLayout.error = error
-                }
-            }
+//        text_name.addTextChangedListener(object : TextWatcher {
+//            private val errorHolderLayout = findViewById<TextInputLayout>(R.id.input_layout_bike_name)
+//            private var job: Job? = null
+//            override fun afterTextChanged(e: Editable?) {
+//                job = launch(UI) {
+//                    delay(700)
+//                    val text = e.toString()
+//                    val errorText = validator.checkBikeNameValid(text)
+//                    errorHolderLayout.error = errorText
+//                }
+//            }
+//
+//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                isDirty = true
+//            }
+//
+//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                job?.cancel()
+//            }
+//        })
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                isDirty = true
-            }
+//        watcher = listOf(
+//                InputWatcher.attach(text_name, { validator.checkBikeNameValid(it) }),
+//                InputWatcher.attach(text_manufacturer, { validator.checkBikeNameValid(it) }),
+//                InputWatcher.attach(text_size, { validator.checkBikeNameValid(it) }),
+//                )
 
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                job?.cancel()
-            }
-        })
+        watcher = listOf(
+                InputWatcher.attach(text_name, FormValidator.BikeName),
+                InputWatcher.attach(text_manufacturer, FormValidator.Manufacturer))
+
+        watcher.forEach { it.enable() }
+
+
+//        val errorHolderLayout = findViewById<TextInputLayout>(R.id.input_layout_bike_name)
+//        InputWatcher.attach(text_name, errorHolderLayout,
+//                { validator.checkBikeNameValid(it) })
     }
 
     override fun onResume() {
@@ -126,11 +146,6 @@ class EditBikeActivity : BaseActivity() {
         setupTextChangedListener()
     }
 
-    private fun restoreValues(bikeId: String) {
-        val bikeData = Bikes[bikeId]!!
-        restoreValues(bikeData)
-    }
-
     private fun restoreValues(data: BikeData) {
         text_name.setText(data.name)
         spinner_type.setText(data.type)
@@ -138,7 +153,7 @@ class EditBikeActivity : BaseActivity() {
         checkbox_registered.isChecked = data.registered
         text_size.setText(data.size)
 
-        Utils.snackDelayed(this, getString(R.string.restore_changes_text))
+//        Utils.snackDelayed(this, getString(R.string.restore_changes_text))
     }
 
     private fun setupClickListener() {
@@ -146,11 +161,11 @@ class EditBikeActivity : BaseActivity() {
     }
 
     private fun saveChanges() {
-        println("start progress bar")
+        println("enable progress bar")
         Utils.startProgressBarOptimistic(progressbar)
 
         val bikeData = BikeData(
-                id = "axj6shsad",
+                id = Constants.DUMMY_BIKE_ID,
                 name = text_name.text.toString(),
                 type = spinner_type.text.toString(),
                 manufacturer = text_manufacturer.text.toString(),
@@ -163,7 +178,7 @@ class EditBikeActivity : BaseActivity() {
 
 
         Bikes.put(bikeData.id, bikeData)
-        Utils.snackDelayed(this, getString(R.string.save_changes_title))
+//        Utils.snackDelayed(this, getString(R.string.save_changes_title))
 //        Persistator().saveBikeData(this, bikeData)
     }
 
@@ -174,11 +189,13 @@ class EditBikeActivity : BaseActivity() {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(text_name.windowToken, 0)
 
-
             val dialog = DialogProvider.createSaveChangesDialog(this, {
                 launch(UI) {
                     saveChanges()
-                    Navigator.gotoBikeDetailActivity(this@EditBikeActivity, true)
+                    val bundle = Bundle()
+                    bundle.putBoolean(Constants.EXTRA_SAVED_CHANGES, true)
+                    Navigator.withBundle(bundle)
+                            .gotoBikeDetailActivity(this@EditBikeActivity, true)
                 }
             }, null)
             dialog.show()
@@ -186,20 +203,4 @@ class EditBikeActivity : BaseActivity() {
             Navigator.gotoBikeDetailActivity(this)
         }
     }
-
-
-    /**
-     * EditText Extender (usage like inner class)
-     */
-//    private fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
-//        this.addTextChangedListener(object : TextWatcher {
-//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-//            override fun afterTextChanged(editable: Editable?) {
-//                afterTextChanged.invoke(editable.toString())
-//            }
-//        })
-//    }
-
-
 }

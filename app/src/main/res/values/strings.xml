@@ -69,5 +69,7 @@
     <string name="save_changes_text">Änderungen speichern</string>
     <string name="yes">yes</string>
     <string name="save_changes_title">Save changes</string>
+    <string name="snack_saved_changes">Saved changes</string>
+    <string name="restore_changes_text">Values restored</string>
 
 </resources>

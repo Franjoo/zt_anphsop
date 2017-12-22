@@ -1,16 +1,32 @@
 package pu.zajhhaptaueuh.ztanphsop
 
 import android.content.Context
+import pu.zajhhaptaueuh.ztanphsop.utils.Matcher
 
 /* Copyright (C) million hunters GmbH - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential.
  * Created by Franz Benthin <franz.benthin@fahrradjaeger.de>, 12 2017
  */
+typealias C = Constants; typealias M = Matcher
 
-typealias C = Constants
+class Error(val matcher: Matcher, val isNegated: Boolean, val errorStringResource: Int)
+
+enum class FormValidator(var list: List<Error>) {
+
+    BikeName(listOf(
+            Error(M.NoSpecialCharacters, true, R.string.err_special_characters),
+            Error(M.LessThan4, true, R.string.err_special_characters),
+            Error(M.MoreThan12, true, R.string.err_special_characters))),
+
+    Manufacturer(listOf(
+            Error(M.NoSpecialCharacters, true, R.string.err_special_characters),
+            Error(M.LessThan4, true, R.string.err_special_characters),
+            Error(M.MoreThan12, true, R.string.err_special_characters)))
+
+}
+
 class Validator(private val context: Context) {
-
     /**
      * maps regex to error resource strings
      */
@@ -48,7 +64,18 @@ class Validator(private val context: Context) {
 
     /**
      * checks regex with negation option
-     * @return an error matches otherwise null
+     * @return an error if matches otherwise null
+     */
+    private fun checkValid(s: String, regex: Regex, isNegated: Boolean, errorString: String): String? {
+        if (!regex.matches(s) && isNegated || regex.matches(s) && !isNegated) {
+            return errorString
+        }
+        return null
+    }
+
+    /**
+     * checks regex with negation option
+     * @return an error if matches otherwise null
      */
     private fun checkValid(s: String, regex: Regex, isNegated: Boolean): String? {
         if (!regex.matches(s) && isNegated || regex.matches(s) && !isNegated) {
@@ -59,7 +86,7 @@ class Validator(private val context: Context) {
 
     /**
      * checks multiple regex
-     * @return an error matches otherwise null
+     * @return an error if matches otherwise null
      */
     private fun checkMultiValid(s: String, vararg regex: Regex): String? {
         regex.forEach {
@@ -84,7 +111,23 @@ class Validator(private val context: Context) {
     }
 
     /**
-     * Utility method to resolve a string resource
+     * checks multiple regex with negation option
+     */
+    private fun checkByFormValidator(text: String, formValidator: FormValidator): String? {
+        val errors = formValidator.list
+        errors.forEach({
+            //            val regex = FormValidator.valueOf(formValidator.name).
+            val e = it.matcher
+            checkValid(text, it.matcher.regex, it.isNegated, s(it.errorStringResource))?.let {
+                return@let it
+            }
+        })
+
+        return null
+    }
+
+    /**
+     * convenience method to resolve a string resource
      */
     private fun s(resId: Int): String {
         return context.getString(resId)

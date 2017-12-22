@@ -1,6 +1,7 @@
 package pu.zajhhaptaueuh.ztanphsop.network
 
 import kotlinx.coroutines.experimental.delay
+import pu.zajhhaptaueuh.ztanphsop.Constants
 import pu.zajhhaptaueuh.ztanphsop.models.BikeData
 
 /* Copyright (C) million hunters GmbH - All Rights Reserved
@@ -11,14 +12,13 @@ import pu.zajhhaptaueuh.ztanphsop.models.BikeData
 class ApiClient {
 
     /**
-     * simulates a
+     * simulates a server request
      */
     suspend fun requestBikeData(): BikeData {
         delay(1_000)
 
-        val bikeIdFromUser = "dummyBikeId"
         return BikeData(
-                bikeIdFromUser,
+                Constants.DUMMY_BIKE_ID,
                 "dummy",
                 "type",
                 "m",

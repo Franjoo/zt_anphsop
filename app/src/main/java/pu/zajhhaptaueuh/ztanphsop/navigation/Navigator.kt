@@ -3,9 +3,8 @@ package pu.zajhhaptaueuh.ztanphsop.navigation
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.support.design.widget.Snackbar
+import android.os.Bundle
 import android.util.Log
-import android.view.View
 import pu.zajhhaptaueuh.ztanphsop.Constants
 import pu.zajhhaptaueuh.ztanphsop.R
 import pu.zajhhaptaueuh.ztanphsop.usecases.NotImplementedActivity
@@ -32,21 +31,38 @@ class Navigator {
 
         val TAG = Navigator@ this.javaClass.simpleName
         private val OP_ACTIVITY = "Start Activity: "
+        private var pendingBundle: Bundle? = null
 
-        fun gotoBikeDetailActivity(context: Activity, savedChanges:Boolean) {
+        fun withBundle(bundle: Bundle): Companion {
+            pendingBundle = bundle
+            return this
+        }
+
+        fun gotoBikeDetailActivity(context: Activity, savedChanges: Boolean) {
+
             val intent = Intent(context, BikeDetailActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            intent.putExtra(Constants.EXTRA_SAVED_CHANGES, savedChanges)
+
+            pendingBundle?.let {
+                intent.putExtras(it)
+            }
 
             context.setResult(Constants.RESULT_SAVED_CHANGES, intent)
             context.startActivityForResult(intent, Constants.RESULT_SAVED_CHANGES)
             context.overridePendingTransition(R.anim.left_in, R.anim.left_out)
             context.finish()
 
+            clearPendingActions()
+
             logStart(BikeDetailActivity@ this.javaClass.simpleName)
         }
+
+        private fun clearPendingActions() {
+            pendingBundle = null
+        }
+
         fun gotoBikeDetailActivity(context: Activity) {
-            gotoBikeDetailActivity(context,false)
+            gotoBikeDetailActivity(context, false)
 //            val intent =  Intent(context, EditBikeActivity::class.java)
 //            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
@@ -56,6 +72,11 @@ class Navigator {
         fun gotoEditBikeActivity(context: Activity) {
             val intent = Intent(context, EditBikeActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+            pendingBundle?.let {
+                intent.putExtras(it)
+            }
+
             context.startActivity(intent)
             context.overridePendingTransition(R.anim.right_in, R.anim.right_out)
 
