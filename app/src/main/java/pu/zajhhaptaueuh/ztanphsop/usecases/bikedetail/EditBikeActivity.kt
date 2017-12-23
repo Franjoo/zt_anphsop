@@ -125,6 +125,7 @@ class EditBikeActivity : BaseActivity(), InputWatcher.WasTouchedObserver {
 //                InputWatcher.attach(text_size, { validator.checkBikeNameValid(it) }),
 //                )
 
+
         watcher = listOf(
                 InputWatcher.attach(text_name, FormValidator.BikeName),
                 InputWatcher.attach(text_manufacturer, FormValidator.Manufacturer))

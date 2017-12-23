@@ -26,6 +26,7 @@ enum class FormValidator(var list: List<Error>) {
 
 }
 
+@Suppress("unused")
 class Validator(private val context: Context) {
     /**
      * maps regex to error resource strings
@@ -46,6 +47,17 @@ class Validator(private val context: Context) {
                 Pair(C.Matcher_Less_Than_4, false),
                 Pair(C.Matcher_More_Than_12, false)
         )
+    }
+
+    fun checkFormValid(text: String, formValidator: FormValidator): String? {
+        val errors = formValidator.list
+        errors.forEach({
+            checkValid(text, it.matcher.regex, it.isNegated, s(it.errorStringResource))?.let {
+                return@let it
+            }
+        })
+
+        return null
     }
 
 
@@ -107,22 +119,6 @@ class Validator(private val context: Context) {
                 return it
             }
         }
-        return null
-    }
-
-    /**
-     * checks multiple regex with negation option
-     */
-    private fun checkByFormValidator(text: String, formValidator: FormValidator): String? {
-        val errors = formValidator.list
-        errors.forEach({
-            //            val regex = FormValidator.valueOf(formValidator.name).
-            val e = it.matcher
-            checkValid(text, it.matcher.regex, it.isNegated, s(it.errorStringResource))?.let {
-                return@let it
-            }
-        })
-
         return null
     }
 
