@@ -15,6 +15,8 @@ import pu.zajhhaptaueuh.ztanphsop.navigation.Navigator
 import pu.zajhhaptaueuh.ztanphsop.usecases.BaseActivity
 import pu.zajhhaptaueuh.ztanphsop.utils.Utils
 import pu.zajhhaptaueuh.ztanphsop.utils.InputWatcher
+import pu.zajhhaptaueuh.ztanphsop.utils.WasTouchedObserver
+import pu.zajhhaptaueuh.ztanphsop.utils.WatchValidator
 
 
 /* Copyright (C) million hunters GmbH - All Rights Reserved
@@ -24,7 +26,7 @@ import pu.zajhhaptaueuh.ztanphsop.utils.InputWatcher
  */
 
 @Suppress("PrivatePropertyName")
-class EditBikeActivity : BaseActivity(), InputWatcher.WasTouchedObserver {
+class EditBikeActivity : BaseActivity(), WasTouchedObserver {
 
     //    public val tag = this::class.simpleName as String
     val tag = EditBikeActivity@ this.javaClass.simpleName
@@ -98,26 +100,7 @@ class EditBikeActivity : BaseActivity(), InputWatcher.WasTouchedObserver {
     }
 
     private fun setupTextChangedListener() {
-//        text_name.addTextChangedListener(object : TextWatcher {
-//            private val errorHolderLayout = findViewById<TextInputLayout>(R.id.input_layout_bike_name)
-//            private var job: Job? = null
-//            override fun afterTextChanged(e: Editable?) {
-//                job = launch(UI) {
-//                    delay(700)
-//                    val text = e.toString()
-//                    val errorText = validator.checkBikeNameValid(text)
-//                    errorHolderLayout.error = errorText
-//                }
-//            }
-//
-//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                isDirty = true
-//            }
-//
-//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                job?.cancel()
-//            }
-//        })
+
 
 //        watcher = listOf(
 //                InputWatcher.attach(text_name, { validator.checkBikeNameValid(it) }),
@@ -126,16 +109,14 @@ class EditBikeActivity : BaseActivity(), InputWatcher.WasTouchedObserver {
 //                )
 
 
-        watcher = listOf(
-                InputWatcher.attach(text_name, FormValidator.BikeName),
-                InputWatcher.attach(text_manufacturer, FormValidator.Manufacturer))
+//        watcher = listOf(
+//                InputWatcher.attach(text_name, FormValidator.BikeName),
+//                InputWatcher.attach(text_manufacturer, FormValidator.Manufacturer))
 
-        watcher.forEach { it.enable() }
+        WatchValidator.attach(text_name, FormValidator.BikeName).setOnWasTouchedObserver(this)
 
+//        watcher.forEach { it.enable() }
 
-//        val errorHolderLayout = findViewById<TextInputLayout>(R.id.input_layout_bike_name)
-//        InputWatcher.attach(text_name, errorHolderLayout,
-//                { validator.checkBikeNameValid(it) })
     }
 
     override fun onResume() {

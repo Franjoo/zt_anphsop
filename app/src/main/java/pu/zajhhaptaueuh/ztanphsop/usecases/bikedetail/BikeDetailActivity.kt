@@ -26,9 +26,6 @@ import pu.zajhhaptaueuh.ztanphsop.network.ApiClient
 import pu.zajhhaptaueuh.ztanphsop.usecases.BaseActivity
 import pu.zajhhaptaueuh.ztanphsop.utils.Utils
 import kotlin.coroutines.experimental.CoroutineContext
-import android.widget.Toast
-
-
 
 
 /* Copyright (Constants) million hunters GmbH - All Rights Reserved
@@ -41,8 +38,9 @@ class BikeDetailActivity : BaseActivity() {
 
     //    private val tag = this::class.simpleName as String
     val tag: String = EditBikeActivity@ this.javaClass.simpleName
-    var bikeId: String? = null
+    private var bikeId: String? = null
 
+    /** lifecycle */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bike_detail)
@@ -55,7 +53,7 @@ class BikeDetailActivity : BaseActivity() {
 
         if (Bikes.isEmpty()) {
             restoreBikeData()
-        } else{
+        } else {
             bikeId = Constants.DUMMY_BIKE_ID // todo
         }
 
@@ -65,22 +63,13 @@ class BikeDetailActivity : BaseActivity() {
 
     }
 
+    /** lifecycle */
     override fun onSaveInstanceState(outState: Bundle?) {
-        outState?.putString(Constants.BUNDLE_BIKE_ID,bikeId)
+        outState?.putString(Constants.BUNDLE_BIKE_ID, bikeId)
         super.onSaveInstanceState(outState)
     }
 
-    private fun restoreBikeData() {
-        val exceptionHandler: CoroutineContext = CoroutineExceptionHandler { _, throwable -> throwable.printStackTrace() }
-        async(UI + exceptionHandler) {
-            val deferredBikeData: Deferred<BikeData> = async(CommonPool) { ApiClient().requestBikeData() }
-            val bike = deferredBikeData.await()
-            Bikes.put(bike.id, bike)
-            bikeId = bike.id
-        }
-    }
-
-
+    /** lifecycle */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         when (requestCode) {
             Constants.RESULT_SAVED_CHANGES ->
@@ -88,7 +77,25 @@ class BikeDetailActivity : BaseActivity() {
         }
     }
 
+    /** lifecycle */
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.ab_bike_detail, menu)
+        Utils.tintMenu(menu, resources.getColor(R.color.toggleActivated))
+        return true
+    }
 
+    /** lifecycle */
+    override fun onResume() {
+        super.onResume()
+
+        // handle bundle extras
+        val bikeDataUpdated = intent.getBooleanExtra(Constants.EXTRA_SAVED_CHANGES, false)
+        if (bikeDataUpdated) {
+            Utils.snackLongDelayed(this, getString(R.string.snack_saved_changes))
+        }
+    }
+
+    /** lifecycle */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_camera -> Navigator.gotoNotImplementedActivity(this, "edit images")
@@ -136,22 +143,6 @@ class BikeDetailActivity : BaseActivity() {
         holder.findViewById<TextView>(R.id.sub).text = subTitle
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.ab_bike_detail, menu)
-        Utils.tintMenu(menu, resources.getColor(R.color.toggleActivated))
-        return true
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        // handle bundle extras
-        val bikeDataUpdated = intent.getBooleanExtra(Constants.EXTRA_SAVED_CHANGES, false)
-        if (bikeDataUpdated) {
-            Utils.snackLongDelayed(this, getString(R.string.snack_saved_changes))
-        }
-    }
-
     private fun setupMenu() {
         // todo handle current insect mode state
     }
@@ -173,6 +164,16 @@ class BikeDetailActivity : BaseActivity() {
         val tv: TextView = findViewById<LinearLayout>(parentId).getChildAt(1) as TextView
         tv.text = resources.getString(stringID)
         icon.setImageResource(iconId)
+    }
+
+    private fun restoreBikeData() {
+        val exceptionHandler: CoroutineContext = CoroutineExceptionHandler { _, throwable -> throwable.printStackTrace() }
+        async(UI + exceptionHandler) {
+            val deferredBikeData: Deferred<BikeData> = async(CommonPool) { ApiClient().requestBikeData() }
+            val bike = deferredBikeData.await()
+            Bikes.put(bike.id, bike)
+            bikeId = bike.id
+        }
     }
 
     private fun delete() {

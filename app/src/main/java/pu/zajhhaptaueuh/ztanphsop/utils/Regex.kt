@@ -6,10 +6,9 @@ package pu.zajhhaptaueuh.ztanphsop.utils
  * Created by Franz Benthin <franz.benthin@fahrradjaeger.de>, 12 2017
  */
 
-typealias M = Matcher
-
 enum class Matcher(val regex: Regex) {
     NoSpecialCharacters(Regex("[a-zA-Z0-9]+")),
-    LessThan4(Regex("[a-zA-Z0-9]+")),
-    MoreThan12(Regex("[a-zA-Z0-9]+")),
+    LessThan4(Regex("^.{1,3}")),
+    MoreThan12(Regex("^.{11,}$")),
+    Empty(Regex("^$")),
 }

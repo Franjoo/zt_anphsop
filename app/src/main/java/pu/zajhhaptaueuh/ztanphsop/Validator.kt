@@ -8,21 +8,22 @@ import pu.zajhhaptaueuh.ztanphsop.utils.Matcher
  * Proprietary and confidential.
  * Created by Franz Benthin <franz.benthin@fahrradjaeger.de>, 12 2017
  */
+
+class Error(val matcher: Matcher, val isNegated: Boolean, val errorStringResource: Int?)
+
 typealias C = Constants; typealias M = Matcher
-
-class Error(val matcher: Matcher, val isNegated: Boolean, val errorStringResource: Int)
-
 enum class FormValidator(var list: List<Error>) {
 
     BikeName(listOf(
+            Error(M.Empty, false, null),
             Error(M.NoSpecialCharacters, true, R.string.err_special_characters),
-            Error(M.LessThan4, true, R.string.err_special_characters),
-            Error(M.MoreThan12, true, R.string.err_special_characters))),
+            Error(M.LessThan4, false, R.string.err_too_short),
+            Error(M.MoreThan12, false, R.string.err_too_long))),
 
     Manufacturer(listOf(
             Error(M.NoSpecialCharacters, true, R.string.err_special_characters),
-            Error(M.LessThan4, true, R.string.err_special_characters),
-            Error(M.MoreThan12, true, R.string.err_special_characters)))
+            Error(M.LessThan4, false, R.string.err_too_short),
+            Error(M.MoreThan12, false, R.string.err_too_short)))
 
 }
 
@@ -52,8 +53,12 @@ class Validator(private val context: Context) {
     fun checkFormValid(text: String, formValidator: FormValidator): String? {
         val errors = formValidator.list
         errors.forEach({
-            checkValid(text, it.matcher.regex, it.isNegated, s(it.errorStringResource))?.let {
-                return@let it
+
+            // workaround - stop validation if empty text is allowed
+            if (it.matcher === M.Empty && !it.isNegated && text.isEmpty()) return null
+
+            checkValid(text, it.matcher.regex, it.isNegated, it.errorStringResource?.let { s(it) })?.let {
+                return it
             }
         })
 
@@ -78,7 +83,7 @@ class Validator(private val context: Context) {
      * checks regex with negation option
      * @return an error if matches otherwise null
      */
-    private fun checkValid(s: String, regex: Regex, isNegated: Boolean, errorString: String): String? {
+    private fun checkValid(s: String, regex: Regex, isNegated: Boolean, errorString: String?): String? {
         if (!regex.matches(s) && isNegated || regex.matches(s) && !isNegated) {
             return errorString
         }

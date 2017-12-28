@@ -43,15 +43,15 @@ class InputWatcher private constructor(
     private var isEnabled: Boolean = false
 
     companion object {
-        fun attach(editText: EditText, errorHolderLayout: TextInputLayout, s: (text: String) -> String?): InputWatcher {
-            val instance = InputWatcher(errorHolderLayout, s, Utils.getActivity(editText))
-            editText.addTextChangedListener(instance)
-            return instance
-        }
-
-        fun attach(editText: EditText, s: (text: String) -> String?): InputWatcher {
-            return attach(editText, editText.parent as TextInputLayout, s)
-        }
+//        fun attach(editText: EditText, errorHolderLayout: TextInputLayout, s: (text: String) -> String?): InputWatcher {
+//            val instance = InputWatcher(errorHolderLayout, s, Utils.getActivity(editText))
+//            editText.addTextChangedListener(instance)
+//            return instance
+//        }
+//
+//        fun attach(editText: EditText, s: (text: String) -> String?): InputWatcher {
+//            return attach(editText, editText.parent as TextInputLayout, s)
+//        }
 
 //        fun attach(editText: EditText, formValidator: FormValidator): InputWatcher {
 //            return attach(editText, editText.parent as TextInputLayout, { Validator().checkFormValid()})
