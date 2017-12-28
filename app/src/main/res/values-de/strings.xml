@@ -14,9 +14,9 @@
     <string name="title_notifications">Benachrichtigungen</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="theft_message_info">Anpassen und Löschen</string>
-    <string name="theft_message">Diebstahl Nachricht</string>
+    <string name="theft_message">Diebstahlmeldungen</string>
     <string name="sightings_info">Finde Dein Fahrrad!</string>
-    <string name="chats_sub">Chats zu diesem Fahrrad</string>
+    <string name="chats_info">Unterhaltungen zu diesem Fahrrad</string>
     <string name="hint_bike_name">Spitzname</string>
     <string name="hint_bike_type">Fahrradtyp</string>
     <string name="hint_bike_manufacturer">Hersteller</string>
@@ -52,7 +52,7 @@
     <string name="err_special_characters">keine Sonderzeichen</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Passwort</string>
-    <string name="chats">Chats</string>
+    <string name="chats">Unterhaltungen</string>
     <string name="not_implemented_yet">[ not implemented yet ]</string>
     <string name="title_home">Home</string>
     <string name="save_changes_title">Änderungen speichern</string>
@@ -60,4 +60,8 @@
     <string name="yes">Ja</string>
     <string name="restore_changes_text">Änderungen wiederhergestellt</string>
     <string name="snack_saved_changes">Änderungen gespeichert</string>
+    <string name="err_too_small">zu klein</string>
+    <string name="err_too_big">zu groß</string>
+    <string name="theft_messages">Diebstahlmeldungen</string>
+    <string name="screen_title_edit_images">Foto(s) bearbeiten</string>
 </resources>

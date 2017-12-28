@@ -32,15 +32,19 @@ open class BaseActivity : AppCompatActivity() {
     protected open fun setupActionBar(title: String?) {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         toolbar.setTitleTextAppearance(this, R.style.ToolbarTextAppearance)
-        toolbar.title = title
+        title?.let { toolbar.title = it }
         setSupportActionBar(toolbar)
 
         // prepare home icon
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val homeIndicatorDrawable = Utils.tintDrawable(
                 ResourcesCompat.getDrawable(resources, R.drawable.ic_arrow_back_white_24dp, null)!!,
-                resources.getColor(R.color.toggleActivated) )
+                resources.getColor(R.color.toggleActivated))
         supportActionBar?.setHomeAsUpIndicator(homeIndicatorDrawable)
+    }
+
+    protected open fun setupActionBar() {
+        setupActionBar(null)
     }
 
 

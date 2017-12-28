@@ -7,8 +7,10 @@ package pu.zajhhaptaueuh.ztanphsop.utils
  */
 
 enum class Matcher(val regex: Regex) {
+    Empty(Regex("^$")),
     NoSpecialCharacters(Regex("[a-zA-Z0-9]+")),
     LessThan4(Regex("^.{1,3}")),
     MoreThan12(Regex("^.{11,}$")),
-    Empty(Regex("^$")),
+    NumberLessThan4(Regex("^([0-3])")),
+    NumberGreaterThan99(Regex("^([1-9]\\d\\d|[1-9]\\d{3,})$"))
 }

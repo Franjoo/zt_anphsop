@@ -14,7 +14,8 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
 
-        <activity android:name="pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail.BikeDetailActivity">
+        <activity android:name=".usecases.bikedetail.BikeDetailActivity"
+            android:label="">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -20,10 +20,13 @@ enum class FormValidator(var list: List<Error>) {
             Error(M.LessThan4, false, R.string.err_too_short),
             Error(M.MoreThan12, false, R.string.err_too_long))),
 
-    Manufacturer(listOf(
-            Error(M.NoSpecialCharacters, true, R.string.err_special_characters),
+    BikeManufacturer(listOf(
             Error(M.LessThan4, false, R.string.err_too_short),
-            Error(M.MoreThan12, false, R.string.err_too_short)))
+            Error(M.MoreThan12, false, R.string.err_too_long))),
+
+    BikeSize(listOf(
+            Error(M.NumberLessThan4, false, R.string.err_too_small),
+            Error(M.NumberGreaterThan99, false, R.string.err_too_big)))
 
 }
 

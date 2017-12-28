@@ -26,6 +26,7 @@ import pu.zajhhaptaueuh.ztanphsop.Validator
 class WatchValidator private constructor() {
 
     private var wasTouchedObserver: WasTouchedObserver? = null
+    private var enabled : Boolean = false
 
     companion object {
         fun attach(editText: EditText, formValidator: FormValidator): WatchValidator {
@@ -34,6 +35,8 @@ class WatchValidator private constructor() {
             val watcher = object : TextWatcher {
                 private var job: Job? = null
                 override fun afterTextChanged(e: Editable?) {
+                    if(!instance.enabled) return
+
                     job = launch(UI) {
                         delay(700)
                         val text = e.toString()
@@ -44,10 +47,14 @@ class WatchValidator private constructor() {
                 }
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    if(!instance.enabled) return
+
                     instance.wasTouchedObserver?.wasTouched(editText)
                 }
 
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    if(!instance.enabled) return
+
                     job?.cancel()
                 }
 
@@ -62,6 +69,16 @@ class WatchValidator private constructor() {
 
     fun setOnWasTouchedObserver(wasTouchedObserver: WasTouchedObserver) {
         this.wasTouchedObserver = wasTouchedObserver
+    }
+
+    fun enable():WatchValidator{
+        enabled = true
+        return this
+    }
+
+    fun disable():WatchValidator{
+        enabled = false
+        return this
     }
 
 }

@@ -17,11 +17,6 @@ class RegisterInsectActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.bike_chats)
-    }
-
-    override fun onResume() {
-        super.onResume()
-
         setupActionBar()
     }
 

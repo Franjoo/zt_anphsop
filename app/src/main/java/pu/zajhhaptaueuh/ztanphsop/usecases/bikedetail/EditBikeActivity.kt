@@ -1,10 +1,9 @@
 package pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail
 
-import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.TextInputEditText
 import android.view.MenuItem
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
@@ -14,7 +13,6 @@ import pu.zajhhaptaueuh.ztanphsop.models.BikeData
 import pu.zajhhaptaueuh.ztanphsop.navigation.Navigator
 import pu.zajhhaptaueuh.ztanphsop.usecases.BaseActivity
 import pu.zajhhaptaueuh.ztanphsop.utils.Utils
-import pu.zajhhaptaueuh.ztanphsop.utils.InputWatcher
 import pu.zajhhaptaueuh.ztanphsop.utils.WasTouchedObserver
 import pu.zajhhaptaueuh.ztanphsop.utils.WatchValidator
 
@@ -34,13 +32,16 @@ class EditBikeActivity : BaseActivity(), WasTouchedObserver {
     private val root by bind<View>(R.id.root)
     private val progressbar by bind<ProgressBar>(R.id.progressbar)
     private val btn_save by bind<Button>(R.id.btn_save_changes)
-    private val text_name by bind<EditText>(R.id.input_bike_name)
-    private val spinner_type by bind<EditText>(R.id.input_bike_type)
-    private val text_manufacturer by bind<EditText>(R.id.input_bike_manufacturer)
-    private val text_primary_color by bind<Spinner>(R.id.input_picker_primary_color)
-    private val text_secondary_color by bind<Spinner>(R.id.input_picker_secondary_color)
+
+    private val text_name by bind<TextInputEditText>(R.id.input_bike_name)
+    private val text_type by bind<EditText>(R.id.input_bike_type)
+    private val text_manufacturer by bind<TextInputEditText>(R.id.input_bike_manufacturer)
+    private val text_size by bind<TextInputEditText>(R.id.input_bike_size)
+
+    private val spinner_primary_color by bind<Spinner>(R.id.input_picker_primary_color)
+    private val spinner_secondary_color by bind<Spinner>(R.id.input_picker_secondary_color)
+
     private val checkbox_registered by bind<CheckBox>(R.id.input_checkbox_registered)
-    private val text_size by bind<EditText>(R.id.input_bike_size)
 
     private val primary_color: Int = Constants.Undefined
     private val secondary_color: Int = Constants.Undefined
@@ -62,7 +63,7 @@ class EditBikeActivity : BaseActivity(), WasTouchedObserver {
     private lateinit var validator: Validator
     private var bikeData: BikeData? = null
     private lateinit var bikeId: String
-    private lateinit var watcher: List<InputWatcher>
+    private lateinit var watcher: List<WatchValidator>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,8 +82,10 @@ class EditBikeActivity : BaseActivity(), WasTouchedObserver {
         isDirty = false
         validator = Validator(this)
 
-        setupActionBar(null)
+        setupActionBar()
         setupClickListener()
+        setupTextChangedListener()
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -101,39 +104,48 @@ class EditBikeActivity : BaseActivity(), WasTouchedObserver {
 
     private fun setupTextChangedListener() {
 
+        // hide keyboard when view touched
+        val onTouchListener = View.OnTouchListener { view, event ->
+            Utils.hideKeyboard(this, root)
+            Utils.clearFocus(window)
+            return@OnTouchListener false
+        }
 
-//        watcher = listOf(
-//                InputWatcher.attach(text_name, { validator.checkBikeNameValid(it) }),
-//                InputWatcher.attach(text_manufacturer, { validator.checkBikeNameValid(it) }),
-//                InputWatcher.attach(text_size, { validator.checkBikeNameValid(it) }),
-//                )
+        // hide keyboard when spinners or checkboxes were touched
+        listOf(checkbox_registered, spinner_primary_color, spinner_secondary_color)
+                .forEach { it.setOnTouchListener(onTouchListener) }
 
 
-//        watcher = listOf(
-//                InputWatcher.attach(text_name, FormValidator.BikeName),
-//                InputWatcher.attach(text_manufacturer, FormValidator.Manufacturer))
+        // watch and validate form elements
+        watcher = listOf(
+                WatchValidator.attach(text_name, FormValidator.BikeName),
+                WatchValidator.attach(text_manufacturer, FormValidator.BikeManufacturer),
+                WatchValidator.attach(text_size, FormValidator.BikeSize)
+        )
 
-        WatchValidator.attach(text_name, FormValidator.BikeName).setOnWasTouchedObserver(this)
-
-//        watcher.forEach { it.enable() }
-
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-//        val error = validator.checkBikeNameValid(text_name.text.toString())
-//        error?.let { findViewById<TextInputLayout>(R.id.input_layout_bike_name).error = it }
-
-        setupTextChangedListener()
+        // observe value changes
+        watcher.forEach {
+            it.setOnWasTouchedObserver(this)
+            it.enable()
+        }
     }
 
     private fun restoreValues(data: BikeData) {
+
         text_name.setText(data.name)
-        spinner_type.setText(data.type)
+        text_type.setText(data.type)
         text_manufacturer.setText(data.manufacturer)
-        checkbox_registered.isChecked = data.registered
         text_size.setText(data.size)
+
+        Utils.getItemIndexWithValue(spinner_primary_color, data.primary_color)?.let {
+            spinner_primary_color.setSelection(it)
+        }
+
+        Utils.getItemIndexWithValue(spinner_secondary_color, data.secondary_color)?.let {
+            spinner_secondary_color.setSelection(it)
+        }
+
+        checkbox_registered.isChecked = data.registered
 
 //        Utils.snackDelayed(this, getString(R.string.restore_changes_text))
     }
@@ -143,34 +155,29 @@ class EditBikeActivity : BaseActivity(), WasTouchedObserver {
     }
 
     private fun saveChanges() {
-        println("enable progress bar")
         Utils.startProgressBarOptimistic(progressbar)
 
         val bikeData = BikeData(
                 id = Constants.DUMMY_BIKE_ID,
                 name = text_name.text.toString(),
-                type = spinner_type.text.toString(),
+                type = text_type.text.toString(),
                 manufacturer = text_manufacturer.text.toString(),
-                primary_color = "keks",
-                secondary_color = "bla",
+                primary_color = spinner_primary_color.selectedItem.toString(),
+                secondary_color = spinner_secondary_color.selectedItem.toString(),
                 registered = checkbox_registered.isChecked,
-                size = "27,5"
+                size = text_size.text.toString()
         )
 
 
 
         Bikes.put(bikeData.id, bikeData)
-//        Utils.snackDelayed(this, getString(R.string.save_changes_title))
+
 //        Persistator().saveBikeData(this, bikeData)
     }
 
     private fun leave() {
         if (isDirty) {
-
-            // hide keyboard before showing dialog
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(text_name.windowToken, 0)
-
+            Utils.hideKeyboard(this, root)
             val dialog = DialogProvider.createSaveChangesDialog(this, {
                 launch(UI) {
                     saveChanges()

@@ -1,7 +1,6 @@
 package pu.zajhhaptaueuh.ztanphsop.usecases
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import pu.zajhhaptaueuh.ztanphsop.R
@@ -14,7 +13,7 @@ import pu.zajhhaptaueuh.ztanphsop.R
 class NotImplementedActivity : BaseActivity() {
 
     companion object {
-        val EXTRA_IDENTIFIER:String = "fj.intent.extra.IDENTIFIER"
+        val EXTRA_IDENTIFIER: String = "fj.intent.extra.IDENTIFIER"
     }
 
     @SuppressLint("SetTextI18n")
@@ -22,7 +21,17 @@ class NotImplementedActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.not_implemented_layout)
 
-        val text = intent.getStringExtra(EXTRA_IDENTIFIER)
-        findViewById<TextView>(R.id.not_implemented_tv)!!.text = ("[ $text not implemented yet ]")
+        var actionBarTitle: String? = null
+        intent.extras?.let {
+            if (it.containsKey(EXTRA_IDENTIFIER)) {
+                val text = it.getString(EXTRA_IDENTIFIER)
+
+                findViewById<TextView>(R.id.not_implemented_tv)!!.text = ("[ $text not implemented yet ]")
+                actionBarTitle = text
+
+            }
+        }
+
+        setupActionBar(actionBarTitle)
     }
 }

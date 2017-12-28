@@ -47,8 +47,8 @@ class DialogProvider {
         }
 
 
-        fun createDeleteBikeDialog(context: Context, onYes: () -> Unit, onNo: () -> Unit) {
-            createDialog(context,
+        fun createDeleteBikeDialog(context: Context, onYes: () -> Unit, onNo: () -> Unit):AlertDialog {
+            return createDialog(context,
                     context.getString(R.string.delete_bike),
                     context.getString(R.string.really_delete_bike),
                     context.getString(R.string.delete),

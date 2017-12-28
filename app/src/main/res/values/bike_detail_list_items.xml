@@ -3,14 +3,14 @@
     <!-- Menu Strings -->
     <string-array name="bike_detail_list_items">
 
-        <item>Sightings</item>
-        <item>Find your bike!</item>
+        <item>@string/theft_message</item>
+        <item>@string/theft_message_info</item>
 
-        <item>Theft Message</item>
-        <item>Edit or delete</item>
+        <item>@string/sightings</item>
+        <item>@string/sightings_info</item>
 
-        <item>Chats</item>
-        <item>Chats to this bike</item>
+        <item>@string/chats</item>
+        <item>@string/chats_info</item>
 
     </string-array>
 

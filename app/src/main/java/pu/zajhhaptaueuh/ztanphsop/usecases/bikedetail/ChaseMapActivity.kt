@@ -1,12 +1,12 @@
 package pu.zajhhaptaueuh.ztanphsop.usecases.bikedetail
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.maps.MapView
 import pu.zajhhaptaueuh.ztanphsop.R
 import pu.zajhhaptaueuh.ztanphsop.Secrets
+import pu.zajhhaptaueuh.ztanphsop.usecases.BaseActivity
 
 
 /* Copyright (Constants) million hunters GmbH - All Rights Reserved
@@ -14,7 +14,7 @@ import pu.zajhhaptaueuh.ztanphsop.Secrets
  * Proprietary and confidential.
  * Created by Franz Benthin <franz.benthin@fahrradjaeger.de>, 12 2017
  */
-class ChaseMapActivity : AppCompatActivity() {
+class ChaseMapActivity : BaseActivity() {
     private var mapView: MapView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +23,8 @@ class ChaseMapActivity : AppCompatActivity() {
         setContentView(R.layout.bike_chase_map)
         mapView = findViewById<View>(R.id.mapView) as MapView
         mapView!!.onCreate(savedInstanceState)
+
+        setupActionBar()
     }
 
     public override fun onStart() {

@@ -2,19 +2,21 @@ package pu.zajhhaptaueuh.ztanphsop.utils
 
 import android.animation.ObjectAnimator
 import android.app.Activity
+import android.content.Context
 import android.content.ContextWrapper
 import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.support.design.widget.Snackbar
 import android.view.Menu
 import android.view.View
+import android.view.Window
 import android.view.animation.AccelerateInterpolator
-import android.view.animation.DecelerateInterpolator
+import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
+import android.widget.Spinner
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
-import pu.zajhhaptaueuh.ztanphsop.R
 
 
 /* Copyright (Constants) million hunters GmbH - All Rights Reserved
@@ -23,6 +25,7 @@ import pu.zajhhaptaueuh.ztanphsop.R
  * Created by Franz Benthin <franz.benthin@fahrradjaeger.de>, 12 2017
  */
 
+@Suppress("unused", "MemberVisibilityCanPrivate")
 class Utils {
 
     companion object {
@@ -54,14 +57,13 @@ class Utils {
             return drawable
         }
 
-        fun tintMenu(menu:Menu, color: Int) {
+        fun tintMenu(menu: Menu, color: Int) {
             for (i in 0 until menu.size()) {
                 menu.getItem(i).icon?.let {
-                    Utils.tintDrawable(it,color)
+                    Utils.tintDrawable(it, color)
                 }
             }
         }
-
 
         fun startProgressBarOptimistic(progressBar: ProgressBar) {
             launch(UI) {
@@ -88,6 +90,18 @@ class Utils {
             return null
         }
 
+        fun hideKeyboard(context: Context, view: View) {
+            val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+
+        fun clearFocus(window: Window) {
+            window.decorView.clearFocus()
+        }
+
+        fun getItemIndexWithValue(spinner: Spinner, value: String): Int? {
+            return (0 until spinner.count).firstOrNull { spinner.getItemAtPosition(it).toString().equals(value, true) }
+        }
 
     }
 

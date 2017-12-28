@@ -6,13 +6,15 @@
     android:orientation="vertical"
     android:transitionName="">
 
-    <include layout="@layout/toolbar" android:id="@+id/toolbar"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
-        android:layout_marginTop="?attr/actionBarSize">
+        android:layout_marginTop="?attr/actionBarSize"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,20 +74,21 @@
             <View style="@style/FJ_Divider_Horizontal_Thin" />
 
             <include
+                android:id="@+id/item_theft_message"
+                layout="@layout/list_item" />
+
+            <View style="@style/FJ_Divider_Horizontal_Thin" />
+
+            <include
                 android:id="@+id/item_sightings"
                 layout="@layout/list_item" />
 
             <View style="@style/FJ_Divider_Horizontal_Thin" />
 
             <include
-                android:id="@+id/item_find_bike"
+                android:id="@+id/item_chats"
                 layout="@layout/list_item" />
 
-            <View style="@style/FJ_Divider_Horizontal_Thin" />
-
-            <include
-                android:id="@+id/item_theft_message"
-                layout="@layout/list_item" />
 
         </LinearLayout>
     </ScrollView>

@@ -14,7 +14,7 @@
     <string name="theft_message">Theft Message</string>
     <string name="theft_message_info">Edit or delete</string>
     <string name="chats">Chats</string>
-    <string name="chats_sub">Chats to this bike</string>
+    <string name="chats_info">Chats to this bike</string>
 
     <string name="bike_characteristics">Characteristics</string>
     <string name="bike_privacy_note_1">These information will not be published but could be important in case of theft.</string>
@@ -29,6 +29,8 @@
     <string name="screen_title_chats">Chats</string>
     <string name="screen_title_sightings">Sightings</string>
     <string name="screen_title_bike_edit">Edit</string>
+    <string name="screen_title_edit_images">Edit Image(s)</string>
+
 
     <!-- colors -->
     <string name="color_blue">blue</string>
@@ -57,6 +59,8 @@
 
     <string name="err_too_short">too short</string>
     <string name="err_too_long">too long</string>
+    <string name="err_too_small">too small</string>
+    <string name="err_too_big">too big</string>
     <string name="err_special_characters">no special characters allowed</string>
 
     <string name="btn_save_changes">Save Changes</string>
@@ -71,5 +75,6 @@
     <string name="save_changes_title">Save changes</string>
     <string name="snack_saved_changes">Saved changes</string>
     <string name="restore_changes_text">Values restored</string>
+    <string name="theft_messages">Theft messages</string>
 
 </resources>

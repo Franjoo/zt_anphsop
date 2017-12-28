@@ -48,8 +48,8 @@ class BikeDetailActivity : BaseActivity() {
         setMenuValues()
         setupMenuClickListener()
         setupViews()
-        setupActionBar(null)
         setupMenu()
+        setupActionBar()
 
         if (Bikes.isEmpty()) {
             restoreBikeData()
@@ -98,7 +98,7 @@ class BikeDetailActivity : BaseActivity() {
     /** lifecycle */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.action_camera -> Navigator.gotoNotImplementedActivity(this, "edit images")
+            R.id.action_camera -> Navigator.gotoNotImplementedActivity(this, getString(R.string.screen_title_edit_images))
             R.id.action_edit -> {
                 val bundle = Bundle()
                 bundle.putString(Constants.BUNDLE_BIKE_ID, bikeId)
@@ -116,15 +116,15 @@ class BikeDetailActivity : BaseActivity() {
         // handle menu clicks
         val listener: View.OnClickListener = View.OnClickListener {
             when (it.id) {
-                R.id.item_find_bike -> Navigator.gotoNotImplementedActivity(this, "find bike")
+                R.id.item_chats -> Navigator.gotoChatsActivity(this)
                 R.id.item_sightings -> Navigator.gotoSightingsActivity(this)
-                R.id.item_theft_message -> Navigator.gotoChatsActivity(this)
+                R.id.item_theft_message -> Navigator.gotoNotImplementedActivity(this, getString(R.string.theft_messages))
             }
         }
 
         // assign listener to all menu items
         mutableListOf<ViewGroup>(
-                findViewById(R.id.item_find_bike),
+                findViewById(R.id.item_chats),
                 findViewById(R.id.item_sightings),
                 findViewById(R.id.item_theft_message))
                 .forEach { v -> v.setOnClickListener(listener) }
@@ -133,9 +133,9 @@ class BikeDetailActivity : BaseActivity() {
 
     private fun setMenuValues() {
         val stringValues = resources.getStringArray(R.array.bike_detail_list_items)
-        setMenuItemValues(findViewById(R.id.item_find_bike), stringValues[0], stringValues[1])
+        setMenuItemValues(findViewById(R.id.item_theft_message), stringValues[0], stringValues[1])
         setMenuItemValues(findViewById(R.id.item_sightings), stringValues[2], stringValues[3])
-        setMenuItemValues(findViewById(R.id.item_theft_message), stringValues[4], stringValues[5])
+        setMenuItemValues(findViewById(R.id.item_chats), stringValues[4], stringValues[5])
     }
 
     private fun setMenuItemValues(holder: ViewGroup, title: String, subTitle: String) {
@@ -180,7 +180,7 @@ class BikeDetailActivity : BaseActivity() {
         DialogProvider.createDeleteBikeDialog(this,
                 { Log.d(tag, "bike was deleted") }, // on yes
                 { Log.d(tag, "dialog canceled") } // on cancel
-        )
+        ).show()
     }
 
 
