@@ -8,7 +8,7 @@ package pu.zajhhaptaueuh.ztanphsop
 class Secrets {
 
     companion object {
-        val MAP_BOX_KEY= "pk.eyJ1IjoiZnJhbmpvbyIsImEiOiJjamF2ZHB2dXY2aHJlMzNudzhsemZsN2huIn0.KvO1VVxFZcoHLRrrfSsibQ"
+        val MAPBOX_ACCESS_TOKEN = "pk.eyJ1IjoiZnJhbmpvbyIsImEiOiJjamF2ZHB2dXY2aHJlMzNudzhsemZsN2huIn0.KvO1VVxFZcoHLRrrfSsibQ"
     }
 
 }

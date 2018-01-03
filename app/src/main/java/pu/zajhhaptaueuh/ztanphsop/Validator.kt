@@ -68,6 +68,10 @@ class Validator(private val context: Context) {
         return null
     }
 
+    fun checkSelectionValid(text: String, validator: Any) {
+        TODO()
+    }
+
 
     /* ####### utility functions ####### */
 

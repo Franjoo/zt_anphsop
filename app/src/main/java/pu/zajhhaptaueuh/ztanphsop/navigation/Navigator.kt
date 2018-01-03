@@ -47,8 +47,8 @@ class Navigator {
                 intent.putExtras(it)
             }
 
-            context.setResult(Constants.RESULT_SAVED_CHANGES, intent)
-            context.startActivityForResult(intent, Constants.RESULT_SAVED_CHANGES)
+            context.setResult(Constants.Results.RESULT_SAVED_CHANGES, intent)
+            context.startActivityForResult(intent, Constants.Results.RESULT_SAVED_CHANGES)
             context.overridePendingTransition(R.anim.left_in, R.anim.left_out)
             context.finish()
 

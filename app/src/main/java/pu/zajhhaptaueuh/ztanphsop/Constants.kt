@@ -8,29 +8,34 @@ package pu.zajhhaptaueuh.ztanphsop
 
 class Constants {
 
+    object Bundles {
+        const val BIKE_ID = "fj.bundle.bike.id"
+        const val SAVED_CHANGES = "fj.bundle.saved_changes"
 
+    }
+
+    object Prefs {
+        const val PREFS_FILENAME = "de.zajhhaptaueuh.prefs"
+    }
+
+    object Results{
+        const val RESULT_SAVED_CHANGES = 2001
+    }
 
     companion object {
-
-        val BUNDLE_BIKE_ID = "fj.bundle.bike.id"
-
-        val EXTRA_SAVED_CHANGES = "fj.extras.saved_changes"
-        val RESULT_SAVED_CHANGES = 2001
-
-        val Matcher_No_Special_Characters = Regex("[a-zA-Z0-9]+")
-        val Matcher_Less_Than_4 = Regex("^.{1,3}")
-        val Matcher_More_Than_12 = Regex("^.{11,}$")
 
         val Undefined = -333
 
         val DUMMY_BIKE_ID = "BikeId_abc123"
 
+        // @Deprecated
+        val Matcher_No_Special_Characters = Regex("[a-zA-Z0-9]+")
+        val Matcher_Less_Than_4 = Regex("^.{1,3}")
+        val Matcher_More_Than_12 = Regex("^.{11,}$")
 
-       public enum class Bundles(val id:String){
-            BIKE_ID("fj.bundle.bike.id")
-        }
 
     }
+
 
 }
 

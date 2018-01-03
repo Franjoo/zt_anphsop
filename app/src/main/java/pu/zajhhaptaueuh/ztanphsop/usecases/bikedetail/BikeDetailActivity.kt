@@ -65,14 +65,14 @@ class BikeDetailActivity : BaseActivity() {
 
     /** lifecycle */
     override fun onSaveInstanceState(outState: Bundle?) {
-        outState?.putString(Constants.BUNDLE_BIKE_ID, bikeId)
+        outState?.putString(Constants.Bundles.BIKE_ID, bikeId)
         super.onSaveInstanceState(outState)
     }
 
     /** lifecycle */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         when (requestCode) {
-            Constants.RESULT_SAVED_CHANGES ->
+            Constants.Results.RESULT_SAVED_CHANGES ->
                 Utils.snack(this, getString(R.string.snack_saved_changes))
         }
     }
@@ -89,7 +89,7 @@ class BikeDetailActivity : BaseActivity() {
         super.onResume()
 
         // handle bundle extras
-        val bikeDataUpdated = intent.getBooleanExtra(Constants.EXTRA_SAVED_CHANGES, false)
+        val bikeDataUpdated = intent.getBooleanExtra(Constants.Bundles.SAVED_CHANGES, false)
         if (bikeDataUpdated) {
             Utils.snackLongDelayed(this, getString(R.string.snack_saved_changes))
         }
@@ -101,7 +101,7 @@ class BikeDetailActivity : BaseActivity() {
             R.id.action_camera -> Navigator.gotoNotImplementedActivity(this, getString(R.string.screen_title_edit_images))
             R.id.action_edit -> {
                 val bundle = Bundle()
-                bundle.putString(Constants.BUNDLE_BIKE_ID, bikeId)
+                bundle.putString(Constants.Bundles.BIKE_ID, bikeId)
                 Navigator.withBundle(bundle).gotoEditBikeActivity(this)
             }
             R.id.action_delete -> delete()

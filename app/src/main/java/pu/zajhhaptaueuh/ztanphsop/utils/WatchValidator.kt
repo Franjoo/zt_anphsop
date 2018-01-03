@@ -17,16 +17,10 @@ import pu.zajhhaptaueuh.ztanphsop.Validator
  * Proprietary and confidential.
  * Created by Franz Benthin <franz.benthin@fahrradjaeger.de>, 12 2017
  */
-//class WatchValidator private constructor(
-//        private val view: View,
-//        private val errorHolderLayout: TextInputLayout,
-//        private val validator: (text: String) -> String?,
-//        private val callerActivity: Activity?) {
-
 class WatchValidator private constructor() {
 
     private var wasTouchedObserver: WasTouchedObserver? = null
-    private var enabled : Boolean = false
+    private var enabled: Boolean = false
 
     companion object {
         fun attach(editText: EditText, formValidator: FormValidator): WatchValidator {
@@ -35,7 +29,7 @@ class WatchValidator private constructor() {
             val watcher = object : TextWatcher {
                 private var job: Job? = null
                 override fun afterTextChanged(e: Editable?) {
-                    if(!instance.enabled) return
+                    if (!instance.enabled) return
 
                     job = launch(UI) {
                         delay(700)
@@ -47,13 +41,13 @@ class WatchValidator private constructor() {
                 }
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    if(!instance.enabled) return
+                    if (!instance.enabled) return
 
                     instance.wasTouchedObserver?.wasTouched(editText)
                 }
 
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    if(!instance.enabled) return
+                    if (!instance.enabled) return
 
                     job?.cancel()
                 }
@@ -64,6 +58,8 @@ class WatchValidator private constructor() {
 
             return instance
         }
+
+
     }
 
 
@@ -71,18 +67,19 @@ class WatchValidator private constructor() {
         this.wasTouchedObserver = wasTouchedObserver
     }
 
-    fun enable():WatchValidator{
+    fun enable(): WatchValidator {
         enabled = true
         return this
     }
 
-    fun disable():WatchValidator{
+    fun disable(): WatchValidator {
         enabled = false
         return this
     }
 
+    interface WasTouchedObserver {
+        fun wasTouched(view: View)
+    }
+
 }
 
-interface WasTouchedObserver {
-    fun wasTouched(view: View)
-}

@@ -13,9 +13,9 @@ import pu.zajhhaptaueuh.ztanphsop.R
 class DialogProvider {
 
 
-    @Suppress("JAVA_CLASS_ON_COMPANION")
     companion object {
 
+        @Suppress("MemberVisibilityCanPrivate", "HasPlatformType", "JAVA_CLASS_ON_COMPANION")
         val tag = DialogProvider@ this.javaClass.simpleName
 
         private fun createDialog(context: Context,

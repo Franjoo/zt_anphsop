@@ -6,6 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.delay
 import kotlinx.coroutines.experimental.launch
 import pu.zajhhaptaueuh.ztanphsop.*
 import pu.zajhhaptaueuh.ztanphsop.dialogs.DialogProvider
@@ -13,7 +14,6 @@ import pu.zajhhaptaueuh.ztanphsop.models.BikeData
 import pu.zajhhaptaueuh.ztanphsop.navigation.Navigator
 import pu.zajhhaptaueuh.ztanphsop.usecases.BaseActivity
 import pu.zajhhaptaueuh.ztanphsop.utils.Utils
-import pu.zajhhaptaueuh.ztanphsop.utils.WasTouchedObserver
 import pu.zajhhaptaueuh.ztanphsop.utils.WatchValidator
 
 
@@ -24,7 +24,7 @@ import pu.zajhhaptaueuh.ztanphsop.utils.WatchValidator
  */
 
 @Suppress("PrivatePropertyName")
-class EditBikeActivity : BaseActivity(), WasTouchedObserver {
+class EditBikeActivity : BaseActivity(), WatchValidator.WasTouchedObserver {
 
     //    public val tag = this::class.simpleName as String
     val tag = EditBikeActivity@ this.javaClass.simpleName
@@ -72,8 +72,8 @@ class EditBikeActivity : BaseActivity(), WasTouchedObserver {
 
         // restore saved bike data
         intent.extras?.let {
-            if (it.containsKey(Constants.BUNDLE_BIKE_ID)) {
-                bikeId = it.getString(Constants.BUNDLE_BIKE_ID)
+            if (it.containsKey(Constants.Bundles.BIKE_ID)) {
+                bikeId = it.getString(Constants.Bundles.BIKE_ID)
                 bikeData = Bikes[bikeId]!!
                 restoreValues(bikeData!!)
             }
@@ -177,17 +177,18 @@ class EditBikeActivity : BaseActivity(), WasTouchedObserver {
 
     private fun leave() {
         if (isDirty) {
-            Utils.hideKeyboard(this, root)
-            val dialog = DialogProvider.createSaveChangesDialog(this, {
-                launch(UI) {
+            launch(UI) {
+                Utils.hideKeyboard(this@EditBikeActivity, root)
+                delay(100)
+                val dialog = DialogProvider.createSaveChangesDialog(this@EditBikeActivity, {
                     saveChanges()
                     val bundle = Bundle()
-                    bundle.putBoolean(Constants.EXTRA_SAVED_CHANGES, true)
+                    bundle.putBoolean(Constants.Bundles.SAVED_CHANGES, true)
                     Navigator.withBundle(bundle)
                             .gotoBikeDetailActivity(this@EditBikeActivity, true)
-                }
-            }, null)
-            dialog.show()
+                }, null)
+                dialog.show()
+            }
         } else {
             Navigator.gotoBikeDetailActivity(this)
         }
